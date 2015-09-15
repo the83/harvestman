@@ -10,5 +10,8 @@ export default Ember.Component.extend({
   }),
   showManual: Ember.computed('selectedTab', function() {
     return this.selectedTab === 'manual'
+  }),
+  showWhereToBuy: Ember.computed('selectedTab', function() {
+    return this.selectedTab === 'whereToBuy'
   })
 });

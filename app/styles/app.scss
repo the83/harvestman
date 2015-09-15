@@ -100,6 +100,7 @@ main {
 .product-name {
   color: color("orange", "darken-4");
   text-transform: uppercase;
+  padding-left: 0px !important;
 }
 
 nav {
