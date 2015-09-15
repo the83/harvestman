@@ -17,10 +17,17 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: color("brown", "lighten-3");
 }
 
 main {
   flex: 1 0 auto;
+}
+
+.main-container {
+  background-color: white;
+  padding-right: 20px;
+  @extend .z-depth-4;
 }
 
 /* label color */
@@ -77,12 +84,16 @@ main {
 
 .logo-header {
   background-color: color("grey", "darken-4");
+  .container {
+    background-color: color("grey", "darken-4");
+  }
 }
 
 .main-logo {
   font-weight: bold;
   font-size: 2em;
   color: color("orange", "darken-4");
+  width: 100%;
 }
 
 .product-image {
@@ -95,6 +106,9 @@ main {
 
 .model-number {
   color: color("orange", "darken-4");
+  text-align: right;
+  padding-right: 0px !important;
+  text-transform: uppercase;
 }
 
 .product-name {
@@ -109,6 +123,7 @@ nav {
 }
 
 .nav-wrapper {
+  background-color: $primary-color;
   a {
     color: color("grey", "darken-4");
   }
