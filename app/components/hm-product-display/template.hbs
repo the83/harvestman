@@ -1,0 +1,43 @@
+<row>
+  <div class="col s10 product-name">
+    <h5>{{product.name}}</h5>
+  </div>
+  <div class="col s2 right model-number">
+    <h5>{{product.modelNumber}}</h5>
+  </div>
+</row>
+<row>
+  {{#link-to 'product.edit' product.id id="edit-product-btn" class="btn-flat"}}Edit{{/link-to}}
+</row>
+<row>
+  <div class="col s12 product-image">
+    <div class="center-align">
+    <img src="/assets/images/hertzdonut.png" />
+    </div>
+  </div>
+</row>
+
+<row class="clickable">
+  {{#md-tabs
+    selected=selectedTab}}
+    {{md-tab value='description' title="Description"}}
+    {{md-tab value='specs' title="Specs"}}
+    {{md-tab value='manual' title="Manual"}}
+  {{/md-tabs}}
+</row>
+<row>
+{{#if showDescription}}
+  <div id="description" class="col s12">
+    <p>{{product.description}}</p>
+  </div>
+{{/if}}
+{{#if showSpecs}}
+  <div id="specs" class="col s12">
+  </div>
+{{/if}}
+{{#if showManual}}
+  <div id="manual" class="col s12">
+    <p>{{product.manual}}</p>
+  </div>
+{{/if}}
+</row>

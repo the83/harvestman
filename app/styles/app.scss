@@ -3,7 +3,132 @@
 @import 'components/color';
 
 $primary-color: color("grey", "lighten-3");
+$secondary-color: color("orange", "darken-4");
+$tabs-underline-color: color("orange", "darken-4");
+$tabs-text-color: color("orange", "darken-4");
+$tabs-bg-color: color("grey", "lighten-3");
+$footer-bg-color: color("grey", "darken-4");
 
 @import 'components/variables';
 @import 'materialize';
 @import 'ember-cli-materialize';
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* label color */
+.input-field label {
+  color: #000;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: color("orange", "darken-4");
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid color("orange", "darken-4");
+  box-shadow: 0 1px 0 0 color("orange", "darken-4");
+}
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: color("orange", "darken-4");
+}
+
+#product-list {
+  .active {
+    background-color: color("grey", "darken-2");
+    color: white;
+  }
+  a {
+    color: color("grey", "darken-4");
+  }
+}
+
+#new-product-btn {
+  width: 100%;
+  text-align: center;
+}
+
+#edit-product-btn {
+  padding-left: 0px;
+}
+
+.page-footer {
+  padding-bottom: 20px;
+  color: white;
+}
+
+.logo-header {
+  background-color: color("grey", "darken-4");
+}
+
+.main-logo {
+  font-weight: bold;
+  font-size: 2em;
+  color: color("orange", "darken-4");
+}
+
+.product-image {
+  margin-top: 8px;
+  background-color: black;
+  img {
+    height: 300px;
+  }
+}
+
+.model-number {
+  color: color("orange", "darken-4");
+}
+
+.product-name {
+  color: color("orange", "darken-4");
+  text-transform: uppercase;
+}
+
+nav {
+  line-height: 2em;
+  height: 2em;
+}
+
+.nav-wrapper {
+  a {
+    color: color("grey", "darken-4");
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.product-tile {
+  .card-content {
+    background-color: color("grey", "lighten-3");
+    font-size: 0.7em;
+    padding: 5px;
+    a {
+      color: color("gray", "darken-4");
+    }
+    .title {
+      font-weight: bold;
+      text-transform: uppercase;
+      color: color("orange", "darken-4");
+    }
+  }
+}

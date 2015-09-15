@@ -1,7 +1,18 @@
 <div class="container">
-  <ul>
-    <li>Product 1</li>
-    <li>Product 2</li>
-    <li>Product 3</li>
-  </ul>
+  <div class="row">
+    <div id="product-list" class="col s3">
+      <div class="collection">
+        {{#each model.products as |product|}}
+          {{#link-to 'product.show' product.id class="collection-item"}}
+            {{product.name}}
+          {{/link-to}}
+        {{/each}}
+      </div>
+      {{#link-to 'product.new' id="new-product-btn" class="waves-effect waves-orange btn-flat"}}Add New Product{{/link-to}}
+    </div>
+    <div class="col s9">
+      {{outlet}}
+      {{hm-product-tiles products=model.products}}
+    </div>
+  </div>
 </div>
