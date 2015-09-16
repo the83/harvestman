@@ -1,0 +1,26 @@
+<form id="page-form" class="nested-form">
+  <div class="row">
+    <div class="input-field col s12">
+      {{input type="text" id="page-permalink" value=page.permalink}}
+      <label class="active" for="page-permalink">Permalink</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      {{input type="text" id="page-title" value=page.title}}
+      <label class="active" for="page-title">Title</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      {{textarea id="page-content" class="materialize-textarea" value=page.content}}
+      <label class="active" for="page-content">Content</label>
+    </div>
+  </div>
+
+  <button class="btn orange" type="submit" id="save-button" {{action 'save'}}>
+    Submit
+  </button>
+</form>

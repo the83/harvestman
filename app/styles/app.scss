@@ -17,7 +17,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: color("brown", "lighten-3");
+  background-color: color("grey", "lighten-1");
 }
 
 main {
@@ -28,6 +28,7 @@ main {
   background-color: white;
   padding-right: 20px;
   @extend .z-depth-4;
+  min-height: 600px;
 }
 
 /* label color */
@@ -147,4 +148,14 @@ nav {
       color: color("orange", "darken-4");
     }
   }
+}
+
+.show-newlines {
+  p {
+    white-space: pre-line;
+  }
+}
+
+.nested-form {
+  padding-bottom: 20px;
 }
