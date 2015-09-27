@@ -1,11 +1,11 @@
 <div class="card clickable product-tile">
+  {{#link-to "product.show" product.id}}
     <div class="card-image">
-      {{#link-to "product.show" product.id}}
-        <img src="/assets/images/hertzdonut.png" />
-      {{/link-to}}
+      <img class="responsive-img" src={{product.images.firstObject.url}}>
     </div>
     <div class="card-content">
       <div class="title">{{product.name}}</div>
       <p>{{product.briefDescription}}</p>
     </div>
+  {{/link-to}}
 </div>

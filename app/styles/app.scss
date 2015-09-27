@@ -98,10 +98,14 @@ main {
 }
 
 .product-image {
-  margin-top: 8px;
-  background-color: black;
+  padding-bottom: 20px;
+  background-color: color("grey", "lighten-3");
+  .active {
+    background-color: color("grey", "darken-4") !important;
+  }
   img {
-    height: 300px;
+    background-size: contain !important;
+    background-repeat: no-repeat;
   }
 }
 
@@ -135,6 +139,14 @@ nav {
 }
 
 .product-tile {
+  .card-image {
+    background-color: color("grey", "darken-4");
+    img {
+      max-height: 250px;
+      width: auto;
+      margin: auto;
+    }
+  }
   .card-content {
     background-color: color("grey", "lighten-3");
     font-size: 0.7em;

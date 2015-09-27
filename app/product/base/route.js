@@ -10,6 +10,7 @@ export default Ember.Route.extend({
     }
 
     return Ember.RSVP.hash({
+      store: this.store,
       product: product
     });
   },

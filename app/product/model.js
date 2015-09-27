@@ -6,5 +6,6 @@ export default DS.Model.extend({
   modelNumber: attr('string'),
   description: attr('string'),
   briefDescription: attr('string'),
-  manual: attr('string')
+  manual: attr('string'),
+  images: DS.hasMany('image', { async: 'false' })
 });

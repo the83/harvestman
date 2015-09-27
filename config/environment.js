@@ -19,6 +19,9 @@ module.exports = function(environment) {
     },
     sassOptions: {
       includePaths: ['bower_components/materialize/sass']
+    },
+    contentSecurityPolicy: {
+      'img-src': "'self' data:"
     }
   };
 

@@ -18133,10 +18133,13 @@ main {
   width: 100%; }
 
 .product-image {
-  margin-top: 8px;
-  background-color: black; }
+  padding-bottom: 20px;
+  background-color: #eeeeee; }
+  .product-image .active {
+    background-color: #212121 !important; }
   .product-image img {
-    height: 300px; }
+    background-size: contain !important;
+    background-repeat: no-repeat; }
 
 .model-number {
   color: #e65100;
@@ -18161,6 +18164,12 @@ nav {
 .clickable {
   cursor: pointer; }
 
+.product-tile .card-image {
+  background-color: #212121; }
+  .product-tile .card-image img {
+    max-height: 250px;
+    width: auto;
+    margin: auto; }
 .product-tile .card-content {
   background-color: #eeeeee;
   font-size: 0.7em;

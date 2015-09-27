@@ -1,4 +1,12 @@
 <form id="product-form">
+  {{hm-images images=product.images}}
+
+  <div class="row">
+    <div class="col s12">
+      {{hm-file-uploader store=store model=product objectId=product.id objectType='products'}}
+    </div>
+  </div>
+
   <div class="row">
     <div class="input-field col s6">
       {{input type="text" id="product-name" value=product.name}}
