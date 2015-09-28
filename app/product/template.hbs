@@ -1,15 +1,5 @@
 <div class="row">
-  <div id="product-list" class="col s3 sidebar">
-    <div class="collection">
-      {{#each model.products as |product|}}
-        {{#link-to 'product.show' product.id class="collection-item"}}
-          {{product.name}}
-        {{/link-to}}
-      {{/each}}
-    </div>
-    {{#link-to 'product.new' id="new-product-btn" class="waves-effect waves-orange btn-flat"}}Add New Product{{/link-to}}
-  </div>
-  <div class="col s9">
+  <div class="col s12">
     {{outlet}}
     {{hm-product-tiles products=model.products}}
   </div>

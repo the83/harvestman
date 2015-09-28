@@ -1995,7 +1995,7 @@ ul {
 .clearfix {
   clear: both; }
 
-.z-depth-0 {
+.z-depth-0, nav {
   box-shadow: none !important; }
 
 .z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
@@ -2010,7 +2010,7 @@ ul {
 .z-depth-3 {
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
 
-.z-depth-4, .modal, .main-container {
+.z-depth-4, .modal {
   box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21); }
 
 .z-depth-5 {
@@ -11847,7 +11847,7 @@ ul {
 .clearfix {
   clear: both; }
 
-.z-depth-0 {
+.z-depth-0, nav {
   box-shadow: none !important; }
 
 .z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
@@ -11862,7 +11862,7 @@ ul {
 .z-depth-3 {
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
 
-.z-depth-4, .modal, .main-container {
+.z-depth-4, .modal {
   box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21); }
 
 .z-depth-5 {
@@ -18067,7 +18067,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: #bdbdbd; }
+  background-color: #e0e0e0; }
 
 main {
   flex: 1 0 auto; }
@@ -18075,6 +18075,7 @@ main {
 .main-container {
   background-color: white;
   padding-right: 20px;
+  padding-left: 20px;
   min-height: 600px; }
 
 /* label color */

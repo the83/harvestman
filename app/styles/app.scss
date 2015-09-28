@@ -17,7 +17,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: color("grey", "lighten-1");
+  background-color: color("grey", "lighten-2");
 }
 
 main {
@@ -27,7 +27,7 @@ main {
 .main-container {
   background-color: white;
   padding-right: 20px;
-  @extend .z-depth-4;
+  padding-left: 20px;
   min-height: 600px;
 }
 
@@ -125,6 +125,7 @@ main {
 nav {
   line-height: 2em;
   height: 2em;
+  @extend .z-depth-0;
 }
 
 .nav-wrapper {
