@@ -5,22 +5,21 @@ moduleForComponent('hm-product-tile', 'Integration | Component | hm product tile
   integration: true
 });
 
-test('it renders', function(assert) {
-  assert.expect(2);
+test('it displays a product', function(assert) {
+  assert.expect(3);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  let product = {
+    images: [{
+      url: 'foo.jpg'
+    }],
+    name: 'foo name',
+    briefDescription: 'foo briefDescription'
+  };
 
-  this.render(hbs`{{hm-product-tile}}`);
+  this.set('product', product);
+  this.render(hbs`{{hm-product-tile product=product}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#hm-product-tile}}
-      template block text
-    {{/hm-product-tile}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('img').attr('src'), product.images[0].url);
+  assert.equal(this.$('.title').text().trim(), product.name);
+  assert.equal(this.$('p').text().trim(), product.briefDescription);
 });

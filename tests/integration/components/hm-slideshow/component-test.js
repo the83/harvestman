@@ -5,22 +5,26 @@ moduleForComponent('hm-slideshow', 'Integration | Component | hm slideshow', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  assert.expect(2);
+test('it displays a list of images', function(assert) {
+  assert.expect(3);
+  let images = [
+    { url: 'first.jpg' },
+    { url: 'second.jpg' }
+  ];
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('images', images);
+  this.render(hbs`{{hm-slideshow images=images}}`);
 
-  this.render(hbs`{{hm-slideshow}}`);
+  let renderedImages = this.$('img');
 
-  assert.equal(this.$().text().trim(), '');
+  assert.equal(renderedImages.length, 2);
+  assert.equal(
+    $(renderedImages[0]).attr('style'),
+    `background-image: url(http://localhost:4200/${images[0].url});`
+  );
 
-  // Template block usage:
-  this.render(hbs`
-    {{#hm-slideshow}}
-      template block text
-    {{/hm-slideshow}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(
+    $(renderedImages[1]).attr('style'),
+    `background-image: url(http://localhost:4200/${images[1].url});`
+  );
 });

@@ -2,7 +2,7 @@ import { moduleForModel, test } from 'ember-qunit';
 
 moduleForModel('product', 'Unit | Serializer | product', {
   // Specify the other units that are required for this test.
-  needs: ['serializer:product']
+  needs: ['serializer:product', 'model:image']
 });
 
 // Replace this with your real tests.

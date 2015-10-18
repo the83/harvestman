@@ -5,22 +5,19 @@ moduleForComponent('hm-product-tiles', 'Integration | Component | hm product til
   integration: true
 });
 
-test('it renders', function(assert) {
-  assert.expect(2);
+test('it displays an array of products', function(assert) {
+  assert.expect(3);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  let products = [
+    { name: 'first name' },
+    { name: 'second name' }
+  ];
 
-  this.render(hbs`{{hm-product-tiles}}`);
+  this.set('products', products);
+  this.render(hbs`{{hm-product-tiles products=products}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#hm-product-tiles}}
-      template block text
-    {{/hm-product-tiles}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  let titles = this.$('.title');
+  assert.equal(titles.length, 2);
+  assert.equal($(titles[0]).text().trim(), products[0].name);
+  assert.equal($(titles[1]).text().trim(), products[1].name);
 });
