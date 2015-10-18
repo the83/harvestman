@@ -79755,6 +79755,1563 @@ _registerModule('History', {
 * http://photoswipe.com
 * Copyright (c) 2015 Dmitry Semenov; */
 !function(a,b){"function"==typeof define&&define.amd?define(b):"object"==typeof exports?module.exports=b():a.PhotoSwipeUI_Default=b()}(this,function(){"use strict";var a=function(a,b){var c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v=this,w=!1,x=!0,y=!0,z={barsSize:{top:44,bottom:"auto"},closeElClasses:["item","caption","zoom-wrap","ui","top-bar"],timeToIdle:4e3,timeToIdleOutside:1e3,loadingIndicatorDelay:1e3,addCaptionHTMLFn:function(a,b){return a.title?(b.children[0].innerHTML=a.title,!0):(b.children[0].innerHTML="",!1)},closeEl:!0,captionEl:!0,fullscreenEl:!0,zoomEl:!0,shareEl:!0,counterEl:!0,arrowEl:!0,preloaderEl:!0,tapToClose:!1,tapToToggleControls:!0,clickToCloseNonZoomable:!0,shareButtons:[{id:"facebook",label:"Share on Facebook",url:"https://www.facebook.com/sharer/sharer.php?u={{url}}"},{id:"twitter",label:"Tweet",url:"https://twitter.com/intent/tweet?text={{text}}&url={{url}}"},{id:"pinterest",label:"Pin it",url:"http://www.pinterest.com/pin/create/button/?url={{url}}&media={{image_url}}&description={{text}}"},{id:"download",label:"Download image",url:"{{raw_image_url}}",download:!0}],getImageURLForShare:function(){return a.currItem.src||""},getPageURLForShare:function(){return window.location.href},getTextForShare:function(){return a.currItem.title||""},indexIndicatorSep:" / "},A=function(a){if(r)return!0;a=a||window.event,q.timeToIdle&&q.mouseUsed&&!k&&K();for(var c,d,e=a.target||a.srcElement,f=e.className,g=0;g<S.length;g++)c=S[g],c.onTap&&f.indexOf("pswp__"+c.name)>-1&&(c.onTap(),d=!0);if(d){a.stopPropagation&&a.stopPropagation(),r=!0;var h=b.features.isOldAndroid?600:30;s=setTimeout(function(){r=!1},h)}},B=function(){return!a.likelyTouchDevice||q.mouseUsed||screen.width>1200},C=function(a,c,d){b[(d?"add":"remove")+"Class"](a,"pswp__"+c)},D=function(){var a=1===q.getNumItemsFn();a!==p&&(C(d,"ui--one-slide",a),p=a)},E=function(){C(i,"share-modal--hidden",y)},F=function(){return y=!y,y?(b.removeClass(i,"pswp__share-modal--fade-in"),setTimeout(function(){y&&E()},300)):(E(),setTimeout(function(){y||b.addClass(i,"pswp__share-modal--fade-in")},30)),y||H(),!1},G=function(b){b=b||window.event;var c=b.target||b.srcElement;return a.shout("shareLinkClick",b,c),c.href?c.hasAttribute("download")?!0:(window.open(c.href,"pswp_share","scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=550,height=420,top=100,left="+(window.screen?Math.round(screen.width/2-275):100)),y||F(),!1):!1},H=function(){for(var a,b,c,d,e,f="",g=0;g<q.shareButtons.length;g++)a=q.shareButtons[g],c=q.getImageURLForShare(a),d=q.getPageURLForShare(a),e=q.getTextForShare(a),b=a.url.replace("{{url}}",encodeURIComponent(d)).replace("{{image_url}}",encodeURIComponent(c)).replace("{{raw_image_url}}",c).replace("{{text}}",encodeURIComponent(e)),f+='<a href="'+b+'" target="_blank" class="pswp__share--'+a.id+'"'+(a.download?"download":"")+">"+a.label+"</a>",q.parseShareButtonOut&&(f=q.parseShareButtonOut(a,f));i.children[0].innerHTML=f,i.children[0].onclick=G},I=function(a){for(var c=0;c<q.closeElClasses.length;c++)if(b.hasClass(a,"pswp__"+q.closeElClasses[c]))return!0},J=0,K=function(){clearTimeout(u),J=0,k&&v.setIdle(!1)},L=function(a){a=a?a:window.event;var b=a.relatedTarget||a.toElement;b&&"HTML"!==b.nodeName||(clearTimeout(u),u=setTimeout(function(){v.setIdle(!0)},q.timeToIdleOutside))},M=function(){q.fullscreenEl&&(c||(c=v.getFullscreenAPI()),c?(b.bind(document,c.eventK,v.updateFullscreen),v.updateFullscreen(),b.addClass(a.template,"pswp--supports-fs")):b.removeClass(a.template,"pswp--supports-fs"))},N=function(){q.preloaderEl&&(O(!0),l("beforeChange",function(){clearTimeout(o),o=setTimeout(function(){a.currItem&&a.currItem.loading?(!a.allowProgressiveImg()||a.currItem.img&&!a.currItem.img.naturalWidth)&&O(!1):O(!0)},q.loadingIndicatorDelay)}),l("imageLoadComplete",function(b,c){a.currItem===c&&O(!0)}))},O=function(a){n!==a&&(C(m,"preloader--active",!a),n=a)},P=function(a){var c=a.vGap;if(B()){var g=q.barsSize;if(q.captionEl&&"auto"===g.bottom)if(f||(f=b.createEl("pswp__caption pswp__caption--fake"),f.appendChild(b.createEl("pswp__caption__center")),d.insertBefore(f,e),b.addClass(d,"pswp__ui--fit")),q.addCaptionHTMLFn(a,f,!0)){var h=f.clientHeight;c.bottom=parseInt(h,10)||44}else c.bottom=g.top;else c.bottom="auto"===g.bottom?0:g.bottom;c.top=g.top}else c.top=c.bottom=0},Q=function(){q.timeToIdle&&l("mouseUsed",function(){b.bind(document,"mousemove",K),b.bind(document,"mouseout",L),t=setInterval(function(){J++,2===J&&v.setIdle(!0)},q.timeToIdle/2)})},R=function(){l("onVerticalDrag",function(a){x&&.95>a?v.hideControls():!x&&a>=.95&&v.showControls()});var a;l("onPinchClose",function(b){x&&.9>b?(v.hideControls(),a=!0):a&&!x&&b>.9&&v.showControls()}),l("zoomGestureEnded",function(){a=!1,a&&!x&&v.showControls()})},S=[{name:"caption",option:"captionEl",onInit:function(a){e=a}},{name:"share-modal",option:"shareEl",onInit:function(a){i=a},onTap:function(){F()}},{name:"button--share",option:"shareEl",onInit:function(a){h=a},onTap:function(){F()}},{name:"button--zoom",option:"zoomEl",onTap:a.toggleDesktopZoom},{name:"counter",option:"counterEl",onInit:function(a){g=a}},{name:"button--close",option:"closeEl",onTap:a.close},{name:"button--arrow--left",option:"arrowEl",onTap:a.prev},{name:"button--arrow--right",option:"arrowEl",onTap:a.next},{name:"button--fs",option:"fullscreenEl",onTap:function(){c.isFullscreen()?c.exit():c.enter()}},{name:"preloader",option:"preloaderEl",onInit:function(a){m=a}}],T=function(){var a,c,e,f=function(d){if(d)for(var f=d.length,g=0;f>g;g++){a=d[g],c=a.className;for(var h=0;h<S.length;h++)e=S[h],c.indexOf("pswp__"+e.name)>-1&&(q[e.option]?(b.removeClass(a,"pswp__element--disabled"),e.onInit&&e.onInit(a)):b.addClass(a,"pswp__element--disabled"))}};f(d.children);var g=b.getChildByClass(d,"pswp__top-bar");g&&f(g.children)};v.init=function(){b.extend(a.options,z,!0),q=a.options,d=b.getChildByClass(a.scrollWrap,"pswp__ui"),l=a.listen,R(),l("beforeChange",v.update),l("doubleTap",function(b){var c=a.currItem.initialZoomLevel;a.getZoomLevel()!==c?a.zoomTo(c,b,333):a.zoomTo(q.getDoubleTapZoom(!1,a.currItem),b,333)}),l("preventDragEvent",function(a,b,c){var d=a.target||a.srcElement;d&&d.className&&a.type.indexOf("mouse")>-1&&(d.className.indexOf("__caption")>0||/(SMALL|STRONG|EM)/i.test(d.tagName))&&(c.prevent=!1)}),l("bindEvents",function(){b.bind(d,"pswpTap click",A),b.bind(a.scrollWrap,"pswpTap",v.onGlobalTap),a.likelyTouchDevice||b.bind(a.scrollWrap,"mouseover",v.onMouseOver)}),l("unbindEvents",function(){y||F(),t&&clearInterval(t),b.unbind(document,"mouseout",L),b.unbind(document,"mousemove",K),b.unbind(d,"pswpTap click",A),b.unbind(a.scrollWrap,"pswpTap",v.onGlobalTap),b.unbind(a.scrollWrap,"mouseover",v.onMouseOver),c&&(b.unbind(document,c.eventK,v.updateFullscreen),c.isFullscreen()&&(q.hideAnimationDuration=0,c.exit()),c=null)}),l("destroy",function(){q.captionEl&&(f&&d.removeChild(f),b.removeClass(e,"pswp__caption--empty")),i&&(i.children[0].onclick=null),b.removeClass(d,"pswp__ui--over-close"),b.addClass(d,"pswp__ui--hidden"),v.setIdle(!1)}),q.showAnimationDuration||b.removeClass(d,"pswp__ui--hidden"),l("initialZoomIn",function(){q.showAnimationDuration&&b.removeClass(d,"pswp__ui--hidden")}),l("initialZoomOut",function(){b.addClass(d,"pswp__ui--hidden")}),l("parseVerticalMargin",P),T(),q.shareEl&&h&&i&&(y=!0),D(),Q(),M(),N()},v.setIdle=function(a){k=a,C(d,"ui--idle",a)},v.update=function(){x&&a.currItem?(v.updateIndexIndicator(),q.captionEl&&(q.addCaptionHTMLFn(a.currItem,e),C(e,"caption--empty",!a.currItem.title)),w=!0):w=!1,y||F(),D()},v.updateFullscreen=function(d){d&&setTimeout(function(){a.setScrollOffset(0,b.getScrollY())},50),b[(c.isFullscreen()?"add":"remove")+"Class"](a.template,"pswp--fs")},v.updateIndexIndicator=function(){q.counterEl&&(g.innerHTML=a.getCurrentIndex()+1+q.indexIndicatorSep+q.getNumItemsFn())},v.onGlobalTap=function(c){c=c||window.event;var d=c.target||c.srcElement;if(!r)if(c.detail&&"mouse"===c.detail.pointerType){if(I(d))return void a.close();b.hasClass(d,"pswp__img")&&(1===a.getZoomLevel()&&a.getZoomLevel()<=a.currItem.fitRatio?q.clickToCloseNonZoomable&&a.close():a.toggleDesktopZoom(c.detail.releasePoint))}else if(q.tapToToggleControls&&(x?v.hideControls():v.showControls()),q.tapToClose&&(b.hasClass(d,"pswp__img")||I(d)))return void a.close()},v.onMouseOver=function(a){a=a||window.event;var b=a.target||a.srcElement;C(d,"ui--over-close",I(b))},v.hideControls=function(){b.addClass(d,"pswp__ui--hidden"),x=!1},v.showControls=function(){x=!0,w||v.update(),b.removeClass(d,"pswp__ui--hidden")},v.supportsFullscreen=function(){var a=document;return!!(a.exitFullscreen||a.mozCancelFullScreen||a.webkitExitFullscreen||a.msExitFullscreen)},v.getFullscreenAPI=function(){var b,c=document.documentElement,d="fullscreenchange";return c.requestFullscreen?b={enterK:"requestFullscreen",exitK:"exitFullscreen",elementK:"fullscreenElement",eventK:d}:c.mozRequestFullScreen?b={enterK:"mozRequestFullScreen",exitK:"mozCancelFullScreen",elementK:"mozFullScreenElement",eventK:"moz"+d}:c.webkitRequestFullscreen?b={enterK:"webkitRequestFullscreen",exitK:"webkitExitFullscreen",elementK:"webkitFullscreenElement",eventK:"webkit"+d}:c.msRequestFullscreen&&(b={enterK:"msRequestFullscreen",exitK:"msExitFullscreen",elementK:"msFullscreenElement",eventK:"MSFullscreenChange"}),b&&(b.enter=function(){return j=q.closeOnScroll,q.closeOnScroll=!1,"webkitRequestFullscreen"!==this.enterK?a.template[this.enterK]():void a.template[this.enterK](Element.ALLOW_KEYBOARD_INPUT)},b.exit=function(){return q.closeOnScroll=j,document[this.exitK]()},b.isFullscreen=function(){return document[this.elementK]}),b}};return a});
+;(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  global.FakeXMLHttpRequest = factory()
+}(this, function () { 'use strict';
+
+  /**
+   * Minimal Event interface implementation
+   *
+   * Original implementation by Sven Fuchs: https://gist.github.com/995028
+   * Modifications and tests by Christian Johansen.
+   *
+   * @author Sven Fuchs (svenfuchs@artweb-design.de)
+   * @author Christian Johansen (christian@cjohansen.no)
+   * @license BSD
+   *
+   * Copyright (c) 2011 Sven Fuchs, Christian Johansen
+   */
+
+  var _Event = function Event(type, bubbles, cancelable, target) {
+    this.type = type;
+    this.bubbles = bubbles;
+    this.cancelable = cancelable;
+    this.target = target;
+  };
+
+  _Event.prototype = {
+    stopPropagation: function () {},
+    preventDefault: function () {
+      this.defaultPrevented = true;
+    }
+  };
+
+  /*
+    Used to set the statusText property of an xhr object
+  */
+  var httpStatusCodes = {
+    100: "Continue",
+    101: "Switching Protocols",
+    200: "OK",
+    201: "Created",
+    202: "Accepted",
+    203: "Non-Authoritative Information",
+    204: "No Content",
+    205: "Reset Content",
+    206: "Partial Content",
+    300: "Multiple Choice",
+    301: "Moved Permanently",
+    302: "Found",
+    303: "See Other",
+    304: "Not Modified",
+    305: "Use Proxy",
+    307: "Temporary Redirect",
+    400: "Bad Request",
+    401: "Unauthorized",
+    402: "Payment Required",
+    403: "Forbidden",
+    404: "Not Found",
+    405: "Method Not Allowed",
+    406: "Not Acceptable",
+    407: "Proxy Authentication Required",
+    408: "Request Timeout",
+    409: "Conflict",
+    410: "Gone",
+    411: "Length Required",
+    412: "Precondition Failed",
+    413: "Request Entity Too Large",
+    414: "Request-URI Too Long",
+    415: "Unsupported Media Type",
+    416: "Requested Range Not Satisfiable",
+    417: "Expectation Failed",
+    422: "Unprocessable Entity",
+    500: "Internal Server Error",
+    501: "Not Implemented",
+    502: "Bad Gateway",
+    503: "Service Unavailable",
+    504: "Gateway Timeout",
+    505: "HTTP Version Not Supported"
+  };
+
+
+  /*
+    Cross-browser XML parsing. Used to turn
+    XML responses into Document objects
+    Borrowed from JSpec
+  */
+  function parseXML(text) {
+    var xmlDoc;
+
+    if (typeof DOMParser != "undefined") {
+      var parser = new DOMParser();
+      xmlDoc = parser.parseFromString(text, "text/xml");
+    } else {
+      xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+      xmlDoc.async = "false";
+      xmlDoc.loadXML(text);
+    }
+
+    return xmlDoc;
+  }
+
+  /*
+    Without mocking, the native XMLHttpRequest object will throw
+    an error when attempting to set these headers. We match this behavior.
+  */
+  var unsafeHeaders = {
+    "Accept-Charset": true,
+    "Accept-Encoding": true,
+    "Connection": true,
+    "Content-Length": true,
+    "Cookie": true,
+    "Cookie2": true,
+    "Content-Transfer-Encoding": true,
+    "Date": true,
+    "Expect": true,
+    "Host": true,
+    "Keep-Alive": true,
+    "Referer": true,
+    "TE": true,
+    "Trailer": true,
+    "Transfer-Encoding": true,
+    "Upgrade": true,
+    "User-Agent": true,
+    "Via": true
+  };
+
+  /*
+    Adds an "event" onto the fake xhr object
+    that just calls the same-named method. This is
+    in case a library adds callbacks for these events.
+  */
+  function _addEventListener(eventName, xhr){
+    xhr.addEventListener(eventName, function (event) {
+      var listener = xhr["on" + eventName];
+
+      if (listener && typeof listener == "function") {
+        listener(event);
+      }
+    });
+  }
+
+  function EventedObject() {
+    this._eventListeners = {};
+    var events = ["loadstart", "progress", "load", "abort", "loadend"];
+    for (var i = events.length - 1; i >= 0; i--) {
+      _addEventListener(events[i], this);
+    }
+  };
+
+  EventedObject.prototype = {
+    /*
+      Duplicates the behavior of native XMLHttpRequest's addEventListener function
+    */
+    addEventListener: function addEventListener(event, listener) {
+      this._eventListeners[event] = this._eventListeners[event] || [];
+      this._eventListeners[event].push(listener);
+    },
+
+    /*
+      Duplicates the behavior of native XMLHttpRequest's removeEventListener function
+    */
+    removeEventListener: function removeEventListener(event, listener) {
+      var listeners = this._eventListeners[event] || [];
+
+      for (var i = 0, l = listeners.length; i < l; ++i) {
+        if (listeners[i] == listener) {
+          return listeners.splice(i, 1);
+        }
+      }
+    },
+
+    /*
+      Duplicates the behavior of native XMLHttpRequest's dispatchEvent function
+    */
+    dispatchEvent: function dispatchEvent(event) {
+      var type = event.type;
+      var listeners = this._eventListeners[type] || [];
+
+      for (var i = 0; i < listeners.length; i++) {
+        if (typeof listeners[i] == "function") {
+          listeners[i].call(this, event);
+        } else {
+          listeners[i].handleEvent(event);
+        }
+      }
+
+      return !!event.defaultPrevented;
+    },
+
+    /*
+      Triggers an `onprogress` event with the given parameters.
+    */
+    _progress: function _progress(lengthComputable, loaded, total) {
+      var event = new _Event('progress');
+      event.target = this;
+      event.lengthComputable = lengthComputable;
+      event.loaded = loaded;
+      event.total = total;
+      this.dispatchEvent(event);
+    }
+  }
+
+  /*
+    Constructor for a fake window.XMLHttpRequest
+  */
+  function FakeXMLHttpRequest() {
+    EventedObject.call(this);
+    this.readyState = FakeXMLHttpRequest.UNSENT;
+    this.requestHeaders = {};
+    this.requestBody = null;
+    this.status = 0;
+    this.statusText = "";
+    this.upload = new EventedObject();
+  }
+
+  FakeXMLHttpRequest.prototype = new EventedObject();
+
+  // These status codes are available on the native XMLHttpRequest
+  // object, so we match that here in case a library is relying on them.
+  FakeXMLHttpRequest.UNSENT = 0;
+  FakeXMLHttpRequest.OPENED = 1;
+  FakeXMLHttpRequest.HEADERS_RECEIVED = 2;
+  FakeXMLHttpRequest.LOADING = 3;
+  FakeXMLHttpRequest.DONE = 4;
+
+  var FakeXMLHttpRequestProto = {
+    UNSENT: 0,
+    OPENED: 1,
+    HEADERS_RECEIVED: 2,
+    LOADING: 3,
+    DONE: 4,
+    async: true,
+    withCredentials: false,
+
+    /*
+      Duplicates the behavior of native XMLHttpRequest's open function
+    */
+    open: function open(method, url, async, username, password) {
+      this.method = method;
+      this.url = url;
+      this.async = typeof async == "boolean" ? async : true;
+      this.username = username;
+      this.password = password;
+      this.responseText = null;
+      this.responseXML = null;
+      this.requestHeaders = {};
+      this.sendFlag = false;
+      this._readyStateChange(FakeXMLHttpRequest.OPENED);
+    },
+
+    /*
+      Duplicates the behavior of native XMLHttpRequest's setRequestHeader function
+    */
+    setRequestHeader: function setRequestHeader(header, value) {
+      verifyState(this);
+
+      if (unsafeHeaders[header] || /^(Sec-|Proxy-)/.test(header)) {
+        throw new Error("Refused to set unsafe header \"" + header + "\"");
+      }
+
+      if (this.requestHeaders[header]) {
+        this.requestHeaders[header] += "," + value;
+      } else {
+        this.requestHeaders[header] = value;
+      }
+    },
+
+    /*
+      Duplicates the behavior of native XMLHttpRequest's send function
+    */
+    send: function send(data) {
+      verifyState(this);
+
+      if (!/^(get|head)$/i.test(this.method)) {
+        if (!this.requestHeaders["Content-Type"]) {
+          this.requestHeaders["Content-Type"] = "text/plain;charset=UTF-8";
+        }
+
+        this.requestBody = data;
+      }
+
+      this.errorFlag = false;
+      this.sendFlag = this.async;
+      this._readyStateChange(FakeXMLHttpRequest.OPENED);
+
+      if (typeof this.onSend == "function") {
+        this.onSend(this);
+      }
+
+      this.dispatchEvent(new _Event("loadstart", false, false, this));
+    },
+
+    /*
+      Duplicates the behavior of native XMLHttpRequest's abort function
+    */
+    abort: function abort() {
+      this.aborted = true;
+      this.responseText = null;
+      this.errorFlag = true;
+      this.requestHeaders = {};
+
+      if (this.readyState > FakeXMLHttpRequest.UNSENT && this.sendFlag) {
+        this._readyStateChange(FakeXMLHttpRequest.DONE);
+        this.sendFlag = false;
+      }
+
+      this.readyState = FakeXMLHttpRequest.UNSENT;
+
+      this.dispatchEvent(new _Event("abort", false, false, this));
+      if (typeof this.onerror === "function") {
+          this.onerror();
+      }
+    },
+
+    /*
+      Duplicates the behavior of native XMLHttpRequest's getResponseHeader function
+    */
+    getResponseHeader: function getResponseHeader(header) {
+      if (this.readyState < FakeXMLHttpRequest.HEADERS_RECEIVED) {
+        return null;
+      }
+
+      if (/^Set-Cookie2?$/i.test(header)) {
+        return null;
+      }
+
+      header = header.toLowerCase();
+
+      for (var h in this.responseHeaders) {
+        if (h.toLowerCase() == header) {
+          return this.responseHeaders[h];
+        }
+      }
+
+      return null;
+    },
+
+    /*
+      Duplicates the behavior of native XMLHttpRequest's getAllResponseHeaders function
+    */
+    getAllResponseHeaders: function getAllResponseHeaders() {
+      if (this.readyState < FakeXMLHttpRequest.HEADERS_RECEIVED) {
+        return "";
+      }
+
+      var headers = "";
+
+      for (var header in this.responseHeaders) {
+        if (this.responseHeaders.hasOwnProperty(header) && !/^Set-Cookie2?$/i.test(header)) {
+          headers += header + ": " + this.responseHeaders[header] + "\r\n";
+        }
+      }
+
+      return headers;
+    },
+
+    /*
+      Places a FakeXMLHttpRequest object into the passed
+      state.
+    */
+    _readyStateChange: function _readyStateChange(state) {
+      this.readyState = state;
+
+      if (typeof this.onreadystatechange == "function") {
+        this.onreadystatechange();
+      }
+
+      this.dispatchEvent(new _Event("readystatechange"));
+
+      if (this.readyState == FakeXMLHttpRequest.DONE) {
+        this.dispatchEvent(new _Event("load", false, false, this));
+        this.dispatchEvent(new _Event("loadend", false, false, this));
+      }
+    },
+
+
+    /*
+      Sets the FakeXMLHttpRequest object's response headers and
+      places the object into readyState 2
+    */
+    _setResponseHeaders: function _setResponseHeaders(headers) {
+      this.responseHeaders = {};
+
+      for (var header in headers) {
+        if (headers.hasOwnProperty(header)) {
+            this.responseHeaders[header] = headers[header];
+        }
+      }
+
+      if (this.async) {
+        this._readyStateChange(FakeXMLHttpRequest.HEADERS_RECEIVED);
+      } else {
+        this.readyState = FakeXMLHttpRequest.HEADERS_RECEIVED;
+      }
+    },
+
+    /*
+      Sets the FakeXMLHttpRequest object's response body and
+      if body text is XML, sets responseXML to parsed document
+      object
+    */
+    _setResponseBody: function _setResponseBody(body) {
+      verifyRequestSent(this);
+      verifyHeadersReceived(this);
+      verifyResponseBodyType(body);
+
+      var chunkSize = this.chunkSize || 10;
+      var index = 0;
+      this.responseText = "";
+
+      do {
+        if (this.async) {
+          this._readyStateChange(FakeXMLHttpRequest.LOADING);
+        }
+
+        this.responseText += body.substring(index, index + chunkSize);
+        index += chunkSize;
+      } while (index < body.length);
+
+      var type = this.getResponseHeader("Content-Type");
+
+      if (this.responseText && (!type || /(text\/xml)|(application\/xml)|(\+xml)/.test(type))) {
+        try {
+          this.responseXML = parseXML(this.responseText);
+        } catch (e) {
+          // Unable to parse XML - no biggie
+        }
+      }
+
+      if (this.async) {
+        this._readyStateChange(FakeXMLHttpRequest.DONE);
+      } else {
+        this.readyState = FakeXMLHttpRequest.DONE;
+      }
+    },
+
+    /*
+      Forces a response on to the FakeXMLHttpRequest object.
+
+      This is the public API for faking responses. This function
+      takes a number status, headers object, and string body:
+
+      ```
+      xhr.respond(404, {Content-Type: 'text/plain'}, "Sorry. This object was not found.")
+
+      ```
+    */
+    respond: function respond(status, headers, body) {
+      this._setResponseHeaders(headers || {});
+      this.status = typeof status == "number" ? status : 200;
+      this.statusText = httpStatusCodes[this.status];
+      this._setResponseBody(body || "");
+    }
+  };
+
+  for (var property in FakeXMLHttpRequestProto) {
+    FakeXMLHttpRequest.prototype[property] = FakeXMLHttpRequestProto[property];
+  }
+
+  function verifyState(xhr) {
+    if (xhr.readyState !== FakeXMLHttpRequest.OPENED) {
+      throw new Error("INVALID_STATE_ERR");
+    }
+
+    if (xhr.sendFlag) {
+      throw new Error("INVALID_STATE_ERR");
+    }
+  }
+
+
+  function verifyRequestSent(xhr) {
+      if (xhr.readyState == FakeXMLHttpRequest.DONE) {
+          throw new Error("Request done");
+      }
+  }
+
+  function verifyHeadersReceived(xhr) {
+      if (xhr.async && xhr.readyState != FakeXMLHttpRequest.HEADERS_RECEIVED) {
+          throw new Error("No headers received");
+      }
+  }
+
+  function verifyResponseBodyType(body) {
+      if (typeof body != "string") {
+          var error = new Error("Attempted to respond to fake XMLHttpRequest with " +
+                               body + ", which is not a string.");
+          error.name = "InvalidBodyException";
+          throw error;
+      }
+  }
+  var fake_xml_http_request = FakeXMLHttpRequest;
+
+  return fake_xml_http_request;
+
+}));
+;(function() {
+    "use strict";
+    function $$route$recognizer$dsl$$Target(path, matcher, delegate) {
+      this.path = path;
+      this.matcher = matcher;
+      this.delegate = delegate;
+    }
+
+    $$route$recognizer$dsl$$Target.prototype = {
+      to: function(target, callback) {
+        var delegate = this.delegate;
+
+        if (delegate && delegate.willAddRoute) {
+          target = delegate.willAddRoute(this.matcher.target, target);
+        }
+
+        this.matcher.add(this.path, target);
+
+        if (callback) {
+          if (callback.length === 0) { throw new Error("You must have an argument in the function passed to `to`"); }
+          this.matcher.addChild(this.path, target, callback, this.delegate);
+        }
+        return this;
+      }
+    };
+
+    function $$route$recognizer$dsl$$Matcher(target) {
+      this.routes = {};
+      this.children = {};
+      this.target = target;
+    }
+
+    $$route$recognizer$dsl$$Matcher.prototype = {
+      add: function(path, handler) {
+        this.routes[path] = handler;
+      },
+
+      addChild: function(path, target, callback, delegate) {
+        var matcher = new $$route$recognizer$dsl$$Matcher(target);
+        this.children[path] = matcher;
+
+        var match = $$route$recognizer$dsl$$generateMatch(path, matcher, delegate);
+
+        if (delegate && delegate.contextEntered) {
+          delegate.contextEntered(target, match);
+        }
+
+        callback(match);
+      }
+    };
+
+    function $$route$recognizer$dsl$$generateMatch(startingPath, matcher, delegate) {
+      return function(path, nestedCallback) {
+        var fullPath = startingPath + path;
+
+        if (nestedCallback) {
+          nestedCallback($$route$recognizer$dsl$$generateMatch(fullPath, matcher, delegate));
+        } else {
+          return new $$route$recognizer$dsl$$Target(startingPath + path, matcher, delegate);
+        }
+      };
+    }
+
+    function $$route$recognizer$dsl$$addRoute(routeArray, path, handler) {
+      var len = 0;
+      for (var i=0, l=routeArray.length; i<l; i++) {
+        len += routeArray[i].path.length;
+      }
+
+      path = path.substr(len);
+      var route = { path: path, handler: handler };
+      routeArray.push(route);
+    }
+
+    function $$route$recognizer$dsl$$eachRoute(baseRoute, matcher, callback, binding) {
+      var routes = matcher.routes;
+
+      for (var path in routes) {
+        if (routes.hasOwnProperty(path)) {
+          var routeArray = baseRoute.slice();
+          $$route$recognizer$dsl$$addRoute(routeArray, path, routes[path]);
+
+          if (matcher.children[path]) {
+            $$route$recognizer$dsl$$eachRoute(routeArray, matcher.children[path], callback, binding);
+          } else {
+            callback.call(binding, routeArray);
+          }
+        }
+      }
+    }
+
+    var $$route$recognizer$dsl$$default = function(callback, addRouteCallback) {
+      var matcher = new $$route$recognizer$dsl$$Matcher();
+
+      callback($$route$recognizer$dsl$$generateMatch("", matcher, this.delegate));
+
+      $$route$recognizer$dsl$$eachRoute([], matcher, function(route) {
+        if (addRouteCallback) { addRouteCallback(this, route); }
+        else { this.add(route); }
+      }, this);
+    };
+
+    var $$route$recognizer$$specials = [
+      '/', '.', '*', '+', '?', '|',
+      '(', ')', '[', ']', '{', '}', '\\'
+    ];
+
+    var $$route$recognizer$$escapeRegex = new RegExp('(\\' + $$route$recognizer$$specials.join('|\\') + ')', 'g');
+
+    function $$route$recognizer$$isArray(test) {
+      return Object.prototype.toString.call(test) === "[object Array]";
+    }
+
+    // A Segment represents a segment in the original route description.
+    // Each Segment type provides an `eachChar` and `regex` method.
+    //
+    // The `eachChar` method invokes the callback with one or more character
+    // specifications. A character specification consumes one or more input
+    // characters.
+    //
+    // The `regex` method returns a regex fragment for the segment. If the
+    // segment is a dynamic of star segment, the regex fragment also includes
+    // a capture.
+    //
+    // A character specification contains:
+    //
+    // * `validChars`: a String with a list of all valid characters, or
+    // * `invalidChars`: a String with a list of all invalid characters
+    // * `repeat`: true if the character specification can repeat
+
+    function $$route$recognizer$$StaticSegment(string) { this.string = string; }
+    $$route$recognizer$$StaticSegment.prototype = {
+      eachChar: function(callback) {
+        var string = this.string, ch;
+
+        for (var i=0, l=string.length; i<l; i++) {
+          ch = string.charAt(i);
+          callback({ validChars: ch });
+        }
+      },
+
+      regex: function() {
+        return this.string.replace($$route$recognizer$$escapeRegex, '\\$1');
+      },
+
+      generate: function() {
+        return this.string;
+      }
+    };
+
+    function $$route$recognizer$$DynamicSegment(name) { this.name = name; }
+    $$route$recognizer$$DynamicSegment.prototype = {
+      eachChar: function(callback) {
+        callback({ invalidChars: "/", repeat: true });
+      },
+
+      regex: function() {
+        return "([^/]+)";
+      },
+
+      generate: function(params) {
+        return params[this.name];
+      }
+    };
+
+    function $$route$recognizer$$StarSegment(name) { this.name = name; }
+    $$route$recognizer$$StarSegment.prototype = {
+      eachChar: function(callback) {
+        callback({ invalidChars: "", repeat: true });
+      },
+
+      regex: function() {
+        return "(.+)";
+      },
+
+      generate: function(params) {
+        return params[this.name];
+      }
+    };
+
+    function $$route$recognizer$$EpsilonSegment() {}
+    $$route$recognizer$$EpsilonSegment.prototype = {
+      eachChar: function() {},
+      regex: function() { return ""; },
+      generate: function() { return ""; }
+    };
+
+    function $$route$recognizer$$parse(route, names, specificity) {
+      // normalize route as not starting with a "/". Recognition will
+      // also normalize.
+      if (route.charAt(0) === "/") { route = route.substr(1); }
+
+      var segments = route.split("/"), results = [];
+
+      // A routes has specificity determined by the order that its different segments
+      // appear in. This system mirrors how the magnitude of numbers written as strings
+      // works.
+      // Consider a number written as: "abc". An example would be "200". Any other number written
+      // "xyz" will be smaller than "abc" so long as `a > z`. For instance, "199" is smaller
+      // then "200", even though "y" and "z" (which are both 9) are larger than "0" (the value
+      // of (`b` and `c`). This is because the leading symbol, "2", is larger than the other
+      // leading symbol, "1".
+      // The rule is that symbols to the left carry more weight than symbols to the right
+      // when a number is written out as a string. In the above strings, the leading digit
+      // represents how many 100's are in the number, and it carries more weight than the middle
+      // number which represents how many 10's are in the number.
+      // This system of number magnitude works well for route specificity, too. A route written as
+      // `a/b/c` will be more specific than `x/y/z` as long as `a` is more specific than
+      // `x`, irrespective of the other parts.
+      // Because of this similarity, we assign each type of segment a number value written as a
+      // string. We can find the specificity of compound routes by concatenating these strings
+      // together, from left to right. After we have looped through all of the segments,
+      // we convert the string to a number.
+      specificity.val = '';
+
+      for (var i=0, l=segments.length; i<l; i++) {
+        var segment = segments[i], match;
+
+        if (match = segment.match(/^:([^\/]+)$/)) {
+          results.push(new $$route$recognizer$$DynamicSegment(match[1]));
+          names.push(match[1]);
+          specificity.val += '3';
+        } else if (match = segment.match(/^\*([^\/]+)$/)) {
+          results.push(new $$route$recognizer$$StarSegment(match[1]));
+          specificity.val += '2';
+          names.push(match[1]);
+        } else if(segment === "") {
+          results.push(new $$route$recognizer$$EpsilonSegment());
+          specificity.val += '1';
+        } else {
+          results.push(new $$route$recognizer$$StaticSegment(segment));
+          specificity.val += '4';
+        }
+      }
+
+      specificity.val = +specificity.val;
+
+      return results;
+    }
+
+    // A State has a character specification and (`charSpec`) and a list of possible
+    // subsequent states (`nextStates`).
+    //
+    // If a State is an accepting state, it will also have several additional
+    // properties:
+    //
+    // * `regex`: A regular expression that is used to extract parameters from paths
+    //   that reached this accepting state.
+    // * `handlers`: Information on how to convert the list of captures into calls
+    //   to registered handlers with the specified parameters
+    // * `types`: How many static, dynamic or star segments in this route. Used to
+    //   decide which route to use if multiple registered routes match a path.
+    //
+    // Currently, State is implemented naively by looping over `nextStates` and
+    // comparing a character specification against a character. A more efficient
+    // implementation would use a hash of keys pointing at one or more next states.
+
+    function $$route$recognizer$$State(charSpec) {
+      this.charSpec = charSpec;
+      this.nextStates = [];
+    }
+
+    $$route$recognizer$$State.prototype = {
+      get: function(charSpec) {
+        var nextStates = this.nextStates;
+
+        for (var i=0, l=nextStates.length; i<l; i++) {
+          var child = nextStates[i];
+
+          var isEqual = child.charSpec.validChars === charSpec.validChars;
+          isEqual = isEqual && child.charSpec.invalidChars === charSpec.invalidChars;
+
+          if (isEqual) { return child; }
+        }
+      },
+
+      put: function(charSpec) {
+        var state;
+
+        // If the character specification already exists in a child of the current
+        // state, just return that state.
+        if (state = this.get(charSpec)) { return state; }
+
+        // Make a new state for the character spec
+        state = new $$route$recognizer$$State(charSpec);
+
+        // Insert the new state as a child of the current state
+        this.nextStates.push(state);
+
+        // If this character specification repeats, insert the new state as a child
+        // of itself. Note that this will not trigger an infinite loop because each
+        // transition during recognition consumes a character.
+        if (charSpec.repeat) {
+          state.nextStates.push(state);
+        }
+
+        // Return the new state
+        return state;
+      },
+
+      // Find a list of child states matching the next character
+      match: function(ch) {
+        // DEBUG "Processing `" + ch + "`:"
+        var nextStates = this.nextStates,
+            child, charSpec, chars;
+
+        // DEBUG "  " + debugState(this)
+        var returned = [];
+
+        for (var i=0, l=nextStates.length; i<l; i++) {
+          child = nextStates[i];
+
+          charSpec = child.charSpec;
+
+          if (typeof (chars = charSpec.validChars) !== 'undefined') {
+            if (chars.indexOf(ch) !== -1) { returned.push(child); }
+          } else if (typeof (chars = charSpec.invalidChars) !== 'undefined') {
+            if (chars.indexOf(ch) === -1) { returned.push(child); }
+          }
+        }
+
+        return returned;
+      }
+
+      /** IF DEBUG
+      , debug: function() {
+        var charSpec = this.charSpec,
+            debug = "[",
+            chars = charSpec.validChars || charSpec.invalidChars;
+
+        if (charSpec.invalidChars) { debug += "^"; }
+        debug += chars;
+        debug += "]";
+
+        if (charSpec.repeat) { debug += "+"; }
+
+        return debug;
+      }
+      END IF **/
+    };
+
+    /** IF DEBUG
+    function debug(log) {
+      console.log(log);
+    }
+
+    function debugState(state) {
+      return state.nextStates.map(function(n) {
+        if (n.nextStates.length === 0) { return "( " + n.debug() + " [accepting] )"; }
+        return "( " + n.debug() + " <then> " + n.nextStates.map(function(s) { return s.debug() }).join(" or ") + " )";
+      }).join(", ")
+    }
+    END IF **/
+
+    // Sort the routes by specificity
+    function $$route$recognizer$$sortSolutions(states) {
+      return states.sort(function(a, b) {
+        return b.specificity.val - a.specificity.val;
+      });
+    }
+
+    function $$route$recognizer$$recognizeChar(states, ch) {
+      var nextStates = [];
+
+      for (var i=0, l=states.length; i<l; i++) {
+        var state = states[i];
+
+        nextStates = nextStates.concat(state.match(ch));
+      }
+
+      return nextStates;
+    }
+
+    var $$route$recognizer$$oCreate = Object.create || function(proto) {
+      function F() {}
+      F.prototype = proto;
+      return new F();
+    };
+
+    function $$route$recognizer$$RecognizeResults(queryParams) {
+      this.queryParams = queryParams || {};
+    }
+    $$route$recognizer$$RecognizeResults.prototype = $$route$recognizer$$oCreate({
+      splice: Array.prototype.splice,
+      slice:  Array.prototype.slice,
+      push:   Array.prototype.push,
+      length: 0,
+      queryParams: null
+    });
+
+    function $$route$recognizer$$findHandler(state, path, queryParams) {
+      var handlers = state.handlers, regex = state.regex;
+      var captures = path.match(regex), currentCapture = 1;
+      var result = new $$route$recognizer$$RecognizeResults(queryParams);
+
+      for (var i=0, l=handlers.length; i<l; i++) {
+        var handler = handlers[i], names = handler.names, params = {};
+
+        for (var j=0, m=names.length; j<m; j++) {
+          params[names[j]] = captures[currentCapture++];
+        }
+
+        result.push({ handler: handler.handler, params: params, isDynamic: !!names.length });
+      }
+
+      return result;
+    }
+
+    function $$route$recognizer$$addSegment(currentState, segment) {
+      segment.eachChar(function(ch) {
+        var state;
+
+        currentState = currentState.put(ch);
+      });
+
+      return currentState;
+    }
+
+    function $$route$recognizer$$decodeQueryParamPart(part) {
+      // http://www.w3.org/TR/html401/interact/forms.html#h-17.13.4.1
+      part = part.replace(/\+/gm, '%20');
+      return decodeURIComponent(part);
+    }
+
+    // The main interface
+
+    var $$route$recognizer$$RouteRecognizer = function() {
+      this.rootState = new $$route$recognizer$$State();
+      this.names = {};
+    };
+
+
+    $$route$recognizer$$RouteRecognizer.prototype = {
+      add: function(routes, options) {
+        var currentState = this.rootState, regex = "^",
+            specificity = {},
+            handlers = [], allSegments = [], name;
+
+        var isEmpty = true;
+
+        for (var i=0, l=routes.length; i<l; i++) {
+          var route = routes[i], names = [];
+
+          var segments = $$route$recognizer$$parse(route.path, names, specificity);
+
+          allSegments = allSegments.concat(segments);
+
+          for (var j=0, m=segments.length; j<m; j++) {
+            var segment = segments[j];
+
+            if (segment instanceof $$route$recognizer$$EpsilonSegment) { continue; }
+
+            isEmpty = false;
+
+            // Add a "/" for the new segment
+            currentState = currentState.put({ validChars: "/" });
+            regex += "/";
+
+            // Add a representation of the segment to the NFA and regex
+            currentState = $$route$recognizer$$addSegment(currentState, segment);
+            regex += segment.regex();
+          }
+
+          var handler = { handler: route.handler, names: names };
+          handlers.push(handler);
+        }
+
+        if (isEmpty) {
+          currentState = currentState.put({ validChars: "/" });
+          regex += "/";
+        }
+
+        currentState.handlers = handlers;
+        currentState.regex = new RegExp(regex + "$");
+        currentState.specificity = specificity;
+
+        if (name = options && options.as) {
+          this.names[name] = {
+            segments: allSegments,
+            handlers: handlers
+          };
+        }
+      },
+
+      handlersFor: function(name) {
+        var route = this.names[name], result = [];
+        if (!route) { throw new Error("There is no route named " + name); }
+
+        for (var i=0, l=route.handlers.length; i<l; i++) {
+          result.push(route.handlers[i]);
+        }
+
+        return result;
+      },
+
+      hasRoute: function(name) {
+        return !!this.names[name];
+      },
+
+      generate: function(name, params) {
+        var route = this.names[name], output = "";
+        if (!route) { throw new Error("There is no route named " + name); }
+
+        var segments = route.segments;
+
+        for (var i=0, l=segments.length; i<l; i++) {
+          var segment = segments[i];
+
+          if (segment instanceof $$route$recognizer$$EpsilonSegment) { continue; }
+
+          output += "/";
+          output += segment.generate(params);
+        }
+
+        if (output.charAt(0) !== '/') { output = '/' + output; }
+
+        if (params && params.queryParams) {
+          output += this.generateQueryString(params.queryParams, route.handlers);
+        }
+
+        return output;
+      },
+
+      generateQueryString: function(params, handlers) {
+        var pairs = [];
+        var keys = [];
+        for(var key in params) {
+          if (params.hasOwnProperty(key)) {
+            keys.push(key);
+          }
+        }
+        keys.sort();
+        for (var i = 0, len = keys.length; i < len; i++) {
+          key = keys[i];
+          var value = params[key];
+          if (value == null) {
+            continue;
+          }
+          var pair = encodeURIComponent(key);
+          if ($$route$recognizer$$isArray(value)) {
+            for (var j = 0, l = value.length; j < l; j++) {
+              var arrayPair = key + '[]' + '=' + encodeURIComponent(value[j]);
+              pairs.push(arrayPair);
+            }
+          } else {
+            pair += "=" + encodeURIComponent(value);
+            pairs.push(pair);
+          }
+        }
+
+        if (pairs.length === 0) { return ''; }
+
+        return "?" + pairs.join("&");
+      },
+
+      parseQueryString: function(queryString) {
+        var pairs = queryString.split("&"), queryParams = {};
+        for(var i=0; i < pairs.length; i++) {
+          var pair      = pairs[i].split('='),
+              key       = $$route$recognizer$$decodeQueryParamPart(pair[0]),
+              keyLength = key.length,
+              isArray = false,
+              value;
+          if (pair.length === 1) {
+            value = 'true';
+          } else {
+            //Handle arrays
+            if (keyLength > 2 && key.slice(keyLength -2) === '[]') {
+              isArray = true;
+              key = key.slice(0, keyLength - 2);
+              if(!queryParams[key]) {
+                queryParams[key] = [];
+              }
+            }
+            value = pair[1] ? $$route$recognizer$$decodeQueryParamPart(pair[1]) : '';
+          }
+          if (isArray) {
+            queryParams[key].push(value);
+          } else {
+            queryParams[key] = value;
+          }
+        }
+        return queryParams;
+      },
+
+      recognize: function(path) {
+        var states = [ this.rootState ],
+            pathLen, i, l, queryStart, queryParams = {},
+            isSlashDropped = false;
+
+        queryStart = path.indexOf('?');
+        if (queryStart !== -1) {
+          var queryString = path.substr(queryStart + 1, path.length);
+          path = path.substr(0, queryStart);
+          queryParams = this.parseQueryString(queryString);
+        }
+
+        path = decodeURI(path);
+
+        // DEBUG GROUP path
+
+        if (path.charAt(0) !== "/") { path = "/" + path; }
+
+        pathLen = path.length;
+        if (pathLen > 1 && path.charAt(pathLen - 1) === "/") {
+          path = path.substr(0, pathLen - 1);
+          isSlashDropped = true;
+        }
+
+        for (i=0, l=path.length; i<l; i++) {
+          states = $$route$recognizer$$recognizeChar(states, path.charAt(i));
+          if (!states.length) { break; }
+        }
+
+        // END DEBUG GROUP
+
+        var solutions = [];
+        for (i=0, l=states.length; i<l; i++) {
+          if (states[i].handlers) { solutions.push(states[i]); }
+        }
+
+        states = $$route$recognizer$$sortSolutions(solutions);
+
+        var state = solutions[0];
+
+        if (state && state.handlers) {
+          // if a trailing slash was dropped and a star segment is the last segment
+          // specified, put the trailing slash back
+          if (isSlashDropped && state.regex.source.slice(-5) === "(.+)$") {
+            path = path + "/";
+          }
+          return $$route$recognizer$$findHandler(state, path, queryParams);
+        }
+      }
+    };
+
+    $$route$recognizer$$RouteRecognizer.prototype.map = $$route$recognizer$dsl$$default;
+
+    $$route$recognizer$$RouteRecognizer.VERSION = '0.1.9';
+
+    var $$route$recognizer$$default = $$route$recognizer$$RouteRecognizer;
+
+    /* global define:true module:true window: true */
+    if (typeof define === 'function' && define['amd']) {
+      define('route-recognizer', function() { return $$route$recognizer$$default; });
+    } else if (typeof module !== 'undefined' && module['exports']) {
+      module['exports'] = $$route$recognizer$$default;
+    } else if (typeof this !== 'undefined') {
+      this['RouteRecognizer'] = $$route$recognizer$$default;
+    }
+}).call(this);
+
+
+;(function(self) {
+'use strict';
+
+var appearsBrowserified = typeof self !== 'undefined' &&
+                          typeof process !== 'undefined' &&
+                          Object.prototype.toString.call(process) === '[object Object]';
+
+var RouteRecognizer = appearsBrowserified ? require('route-recognizer') : self.RouteRecognizer;
+var FakeXMLHttpRequest = appearsBrowserified ? require('fake-xml-http-request') : self.FakeXMLHttpRequest;
+
+/**
+ * parseURL - decompose a URL into its parts
+ * @param  {String} url a URL
+ * @return {Object} parts of the URL, including the following
+ *
+ * 'https://www.yahoo.com:1234/mypage?test=yes#abc'
+ *
+ * {
+ *   host: 'www.yahoo.com:1234',
+ *   protocol: 'https:',
+ *   search: '?test=yes',
+ *   hash: '#abc',
+ *   href: 'https://www.yahoo.com:1234/mypage?test=yes#abc',
+ *   pathname: '/mypage',
+ *   fullpath: '/mypage?test=yes'
+ * }
+ */
+function parseURL(url) {
+  // TODO: something for when document isn't present... #yolo
+  var anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.fullpath = anchor.pathname + (anchor.search || '') + (anchor.hash || '');
+  return anchor;
+}
+
+
+/**
+ * Registry
+ *
+ * A registry is a map of HTTP verbs to route recognizers.
+ */
+
+function Registry(/* host */) {
+  this.verbs = {
+    GET: new RouteRecognizer(),
+    PUT: new RouteRecognizer(),
+    POST: new RouteRecognizer(),
+    DELETE: new RouteRecognizer(),
+    PATCH: new RouteRecognizer(),
+    HEAD: new RouteRecognizer(),
+    OPTIONS: new RouteRecognizer()
+  };
+}
+
+/**
+ * Hosts
+ *
+ * a map of hosts to Registries, ultimately allowing
+ * a per-host-and-port, per HTTP verb lookup of RouteRecognizers
+ */
+function Hosts() {
+  this._registries = {};
+}
+
+/**
+ * Hosts#forURL - retrieve a map of HTTP verbs to RouteRecognizers
+ *                for a given URL
+ *
+ * @param  {String} url a URL
+ * @return {Registry}   a map of HTTP verbs to RouteRecognizers
+ *                      corresponding to the provided URL's
+ *                      hostname and port
+ */
+Hosts.prototype.forURL = function(url) {
+  var host = parseURL(url).host;
+  var registry = this._registries[host];
+
+  if (registry === undefined) {
+    registry = (this._registries[host] = new Registry(host));
+  }
+
+  return registry.verbs;
+};
+
+function Pretender(/* routeMap1, routeMap2, ...*/) {
+  // Herein we keep track of RouteRecognizer instances
+  // keyed by HTTP method. Feel free to add more as needed.
+  this.hosts = new Hosts();
+
+  this.handlers = [];
+  this.handledRequests = [];
+  this.passthroughRequests = [];
+  this.unhandledRequests = [];
+  this.requestReferences = [];
+
+  // reference the native XMLHttpRequest object so
+  // it can be restored later
+  this._nativeXMLHttpRequest = self.XMLHttpRequest;
+
+  // capture xhr requests, channeling them into
+  // the route map.
+  self.XMLHttpRequest = interceptor(this);
+
+  // 'start' the server
+  this.running = true;
+
+  // trigger the route map DSL.
+  for (var i = 0; i < arguments.length; i++) {
+    this.map(arguments[i]);
+  }
+}
+
+function interceptor(pretender) {
+  function FakeRequest() {
+    // super()
+    FakeXMLHttpRequest.call(this);
+  }
+  // extend
+  var proto = new FakeXMLHttpRequest();
+  proto.send = function send() {
+    if (!pretender.running) {
+      throw new Error('You shut down a Pretender instance while there was a pending request. ' +
+            'That request just tried to complete. Check to see if you accidentally shut down ' +
+            'a pretender earlier than you intended to');
+    }
+
+    FakeXMLHttpRequest.prototype.send.apply(this, arguments);
+    if (!pretender.checkPassthrough(this)) {
+      pretender.handleRequest(this);
+    } else {
+      var xhr = createPassthrough(this);
+      xhr.send.apply(xhr, arguments);
+    }
+  };
+
+  // passthrough handling
+  var evts = ['error', 'timeout', 'abort'];
+  var lifecycleProps = ['readyState', 'responseText', 'responseXML', 'status', 'statusText'];
+  function createPassthrough(fakeXHR) {
+    var xhr = fakeXHR._passthroughRequest = new pretender._nativeXMLHttpRequest();
+
+    // Use onload instead of onreadystatechange if the browser supports it
+    if ('onload' in xhr) {
+      evts.push('load');
+    } else {
+      evts.push('readystatechange');
+    }
+
+    // add progress event for async calls
+    if (fakeXHR.async) {
+      evts.push('progress');
+    }
+
+    /*jshint -W083 */
+    // jscs:disable requireCurlyBraces
+    // listen to all events to update lifecycle properties
+    for (var i = 0; i < evts.length; i++) {
+      (function(evt) {
+        xhr['on' + evt] = function(e) {
+          // update lifecycle props on each event
+          for (var i = 0; i < lifecycleProps.length; i++) {
+            var prop = lifecycleProps[i];
+            if (xhr[prop]) {
+              fakeXHR[prop] = xhr[prop];
+            }
+          }
+          // fire fake events where applicable
+          fakeXHR.dispatchEvent(e);
+          if (fakeXHR['on' + evt]) {
+            fakeXHR['on' + evt](e);
+          }
+        };
+      })(evts[i]);
+    }
+    /*jshint +W083 */
+    // jscs:enable requireCurlyBraces
+    xhr.open(fakeXHR.method, fakeXHR.url, fakeXHR.async, fakeXHR.username, fakeXHR.password);
+    if (fakeXHR.async) {
+      xhr.timeout = fakeXHR.timeout;
+      xhr.withCredentials = fakeXHR.withCredentials;
+    }
+    for (var h in fakeXHR.requestHeaders) {
+      xhr.setRequestHeader(h, fakeXHR.requestHeaders[h]);
+    }
+    return xhr;
+  }
+
+  proto._passthroughCheck = function(method, args) {
+    if (this._passthroughRequest) {
+      return this._passthroughRequest[method].apply(this._passthroughRequest, args);
+    }
+    return FakeXMLHttpRequest.prototype[method].apply(this, args);
+  };
+
+  proto.abort = function abort() {
+    return this._passthroughCheck('abort', arguments);
+  };
+
+  proto.getResponseHeader = function getResponseHeader() {
+    return this._passthroughCheck('getResponseHeader', arguments);
+  };
+
+  proto.getAllResponseHeaders = function getAllResponseHeaders() {
+    return this._passthroughCheck('getAllResponseHeaders', arguments);
+  };
+
+  FakeRequest.prototype = proto;
+  return FakeRequest;
+}
+
+function verbify(verb) {
+  return function(path, handler, async) {
+    this.register(verb, path, handler, async);
+  };
+}
+
+function scheduleProgressEvent(request, startTime, totalTime) {
+  setTimeout(function() {
+    if (!request.aborted && !request.status) {
+      var ellapsedTime = new Date().getTime() - startTime.getTime();
+      request.upload._progress(true, ellapsedTime, totalTime);
+      request._progress(true, ellapsedTime, totalTime);
+      scheduleProgressEvent(request, startTime, totalTime);
+    }
+  }, 50);
+}
+
+function isArray(array) {
+  return Object.prototype.toString.call(array) === '[object Array]';
+}
+
+var PASSTHROUGH = {};
+
+Pretender.prototype = {
+  get: verbify('GET'),
+  post: verbify('POST'),
+  put: verbify('PUT'),
+  'delete': verbify('DELETE'),
+  patch: verbify('PATCH'),
+  head: verbify('HEAD'),
+  map: function(maps) {
+    maps.call(this);
+  },
+  register: function register(verb, url, handler, async) {
+    if (!handler) {
+      throw new Error('The function you tried passing to Pretender to handle ' +
+        verb + ' ' + url + ' is undefined or missing.');
+    }
+
+    handler.numberOfCalls = 0;
+    handler.async = async;
+    this.handlers.push(handler);
+
+    var registry = this.hosts.forURL(url)[verb];
+
+    registry.add([{
+      path: parseURL(url).fullpath,
+      handler: handler
+    }]);
+  },
+  passthrough: PASSTHROUGH,
+  checkPassthrough: function checkPassthrough(request) {
+    var verb = request.method.toUpperCase();
+
+    var path = parseURL(request.url).fullpath;
+
+    verb = verb.toUpperCase();
+
+    var recognized = this.hosts.forURL(request.url)[verb].recognize(path);
+    var match = recognized && recognized[0];
+    if (match && match.handler === PASSTHROUGH) {
+      this.passthroughRequests.push(request);
+      this.passthroughRequest(verb, path, request);
+      return true;
+    }
+
+    return false;
+  },
+  handleRequest: function handleRequest(request) {
+    var verb = request.method.toUpperCase();
+    var path = request.url;
+
+    var handler = this._handlerFor(verb, path, request);
+
+    if (handler) {
+      handler.handler.numberOfCalls++;
+      var async = handler.handler.async;
+      this.handledRequests.push(request);
+
+      try {
+        var statusHeadersAndBody = handler.handler(request);
+        if (!isArray(statusHeadersAndBody)) {
+          var note = 'Remember to `return [status, headers, body];` in your route handler.';
+          throw new Error('Nothing returned by handler for ' + path + '. ' + note);
+        }
+
+        var status = statusHeadersAndBody[0],
+            headers = this.prepareHeaders(statusHeadersAndBody[1]),
+            body = this.prepareBody(statusHeadersAndBody[2]),
+            pretender = this;
+
+        this.handleResponse(request, async, function() {
+          request.respond(status, headers, body);
+          pretender.handledRequest(verb, path, request);
+        });
+      } catch (error) {
+        this.erroredRequest(verb, path, request, error);
+        this.resolve(request);
+      }
+    } else {
+      this.unhandledRequests.push(request);
+      this.unhandledRequest(verb, path, request);
+    }
+  },
+  handleResponse: function handleResponse(request, strategy, callback) {
+    var delay = typeof strategy === 'function' ? strategy() : strategy;
+    delay = typeof delay === 'boolean' || typeof delay === 'number' ? delay : 0;
+
+    if (delay === false) {
+      callback();
+    } else {
+      var pretender = this;
+      pretender.requestReferences.push({
+        request: request,
+        callback: callback
+      });
+
+      if (delay !== true) {
+        scheduleProgressEvent(request, new Date(), delay);
+        setTimeout(function() {
+          pretender.resolve(request);
+        }, delay);
+      }
+    }
+  },
+  resolve: function resolve(request) {
+    for (var i = 0, len = this.requestReferences.length; i < len; i++) {
+      var res = this.requestReferences[i];
+      if (res.request === request) {
+        res.callback();
+        this.requestReferences.splice(i, 1);
+        break;
+      }
+    }
+  },
+  requiresManualResolution: function(verb, path) {
+    var handler = this._handlerFor(verb.toUpperCase(), path, {});
+    if (!handler) { return false; }
+
+    var async = handler.handler.async;
+    return typeof async === 'function' ? async() === true : async === true;
+  },
+  prepareBody: function(body) { return body; },
+  prepareHeaders: function(headers) { return headers; },
+  handledRequest: function(/* verb, path, request */) { /* no-op */},
+  passthroughRequest: function(/* verb, path, request */) { /* no-op */},
+  unhandledRequest: function(verb, path/*, request */) {
+    throw new Error('Pretender intercepted ' + verb + ' ' +
+      path + ' but no handler was defined for this type of request');
+  },
+  erroredRequest: function(verb, path, request, error) {
+    error.message = 'Pretender intercepted ' + verb + ' ' +
+      path + ' but encountered an error: ' + error.message;
+    throw error;
+  },
+  _handlerFor: function(verb, url, request) {
+    var registry = this.hosts.forURL(url)[verb];
+    var matches = registry.recognize(parseURL(url).fullpath);
+
+    var match = matches ? matches[0] : null;
+    if (match) {
+      request.params = match.params;
+      request.queryParams = matches.queryParams;
+    }
+
+    return match;
+  },
+  shutdown: function shutdown() {
+    self.XMLHttpRequest = this._nativeXMLHttpRequest;
+
+    // 'stop' the server
+    this.running = false;
+  }
+};
+
+Pretender.parseURL = parseURL;
+Pretender.Hosts = Hosts;
+Pretender.Registry = Registry;
+
+if (typeof module === 'object') {
+  module.exports = Pretender;
+} else if (typeof define !== 'undefined') {
+  define('pretender', [], function() {
+    return Pretender;
+  });
+}
+self.Pretender = Pretender;
+}(self));
+
+;/* globals Pretender */
+
+define('pretender', [], function() {
+  "use strict";
+
+  return {
+    'default': Pretender
+  };
+});
+
 ;define("ember-uploader",
   ["ember-uploader/uploader","ember-uploader/s3","ember-uploader/file-field","exports"],
   function(__dependency1__, __dependency2__, __dependency3__, __exports__) {

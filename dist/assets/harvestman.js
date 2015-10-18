@@ -22,14 +22,14 @@ define('harvestman/app', ['exports', 'ember', 'ember/resolver', 'ember/load-init
   exports['default'] = App;
 
 });
-define('harvestman/application/adapter', ['exports', 'ember-data'], function (exports, DS) {
+define('harvestman/application/adapter', ['exports', 'ember-data', 'ember'], function (exports, DS, Ember) {
 
   'use strict';
 
   exports['default'] = DS['default'].ActiveModelAdapter.extend({
     headers: (function () {
       return {
-        "X-XSRF-TOKEN": decodeURIComponent(Ember.get(document.cookie.match(/XSRF\-TOKEN\=([^;]*)/), "1"))
+        "X-XSRF-TOKEN": decodeURIComponent(Ember['default'].get(document.cookie.match(/XSRF\-TOKEN\=([^;]*)/), "1"))
       };
     }).property().volatile()
   });
@@ -403,7 +403,7 @@ define('harvestman/components/hm-page-display/template', ['exports'], function (
             },
             "end": {
               "line": 6,
-              "column": 77
+              "column": 67
             }
           },
           "moduleName": "harvestman/components/hm-page-display/template.hbs"
@@ -472,6 +472,7 @@ define('harvestman/components/hm-page-display/template', ['exports'], function (
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"id","page-content");
         dom.setAttribute(el2,"class","col s12");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
@@ -496,7 +497,7 @@ define('harvestman/components/hm-page-display/template', ['exports'], function (
       },
       statements: [
         ["content","page.title",["loc",[null,[2,6],[2,20]]]],
-        ["block","link-to",["page.edit",["get","page.id",["loc",[null,[6,25],[6,32]]]]],["id","edit-product-btn","class","btn-flat"],0,null,["loc",[null,[6,2],[6,89]]]],
+        ["block","link-to",["page.edit",["get","page.id",["loc",[null,[6,25],[6,32]]]]],["class","btn-flat edit-button"],0,null,["loc",[null,[6,2],[6,79]]]],
         ["content","page.content",["loc",[null,[11,4],[11,22]]]]
       ],
       locals: [],
@@ -669,18 +670,10 @@ define('harvestman/components/hm-product-display/component', ['exports', 'ember'
 
   exports['default'] = Ember['default'].Component.extend({
     selectedTab: 'description',
-    showDescription: Ember['default'].computed('selectedTab', function () {
-      return this.selectedTab === 'description';
-    }),
-    showSpecs: Ember['default'].computed('selectedTab', function () {
-      return this.selectedTab === 'specs';
-    }),
-    showManual: Ember['default'].computed('selectedTab', function () {
-      return this.selectedTab === 'manual';
-    }),
-    showWhereToBuy: Ember['default'].computed('selectedTab', function () {
-      return this.selectedTab === 'whereToBuy';
-    })
+    showDescription: Ember['default'].computed.equal('selectedTab', 'description'),
+    showSpecs: Ember['default'].computed.equal('selectedTab', 'specs'),
+    showManual: Ember['default'].computed.equal('selectedTab', 'manual'),
+    showWhereToBuy: Ember['default'].computed.equal('selectedTab', 'whereToBuy')
   });
 
 });
@@ -1612,13 +1605,13 @@ define('harvestman/components/hm-slideshow/component', ['exports', 'ember'], fun
     }).on('didRender'),
 
     _initSlider: function _initSlider() {
-      var slider = $('.slider');
+      var slider = Ember['default'].$('.slider');
       if (slider.find('img').attr('src').match(/data/)) {
         return;
       }
 
       // for some reason reinitializing the slider doesn't GC the indicators
-      $('.indicators').remove();
+      Ember['default'].$('.indicators').remove();
       slider.slider({
         height: 300
       });
@@ -4801,7 +4794,7 @@ define('harvestman/tests/application/adapter.jshint', function () {
 
   QUnit.module('JSHint - application');
   QUnit.test('application/adapter.js should pass jshint', function(assert) { 
-    assert.ok(false, 'application/adapter.js should pass jshint.\napplication/adapter.js: line 7, col 6, Missing semicolon.\napplication/adapter.js: line 6, col 42, \'Ember\' is not defined.\n\n2 errors'); 
+    assert.ok(true, 'application/adapter.js should pass jshint.'); 
   });
 
 });
@@ -4811,7 +4804,7 @@ define('harvestman/tests/components/hm-file-uploader/component.jshint', function
 
   QUnit.module('JSHint - components/hm-file-uploader');
   QUnit.test('components/hm-file-uploader/component.js should pass jshint', function(assert) { 
-    assert.ok(false, 'components/hm-file-uploader/component.js should pass jshint.\ncomponents/hm-file-uploader/component.js: line 31, col 10, Missing semicolon.\n\n1 error'); 
+    assert.ok(true, 'components/hm-file-uploader/component.js should pass jshint.'); 
   });
 
 });
@@ -4871,7 +4864,7 @@ define('harvestman/tests/components/hm-product-display/component.jshint', functi
 
   QUnit.module('JSHint - components/hm-product-display');
   QUnit.test('components/hm-product-display/component.js should pass jshint', function(assert) { 
-    assert.ok(false, 'components/hm-product-display/component.js should pass jshint.\ncomponents/hm-product-display/component.js: line 6, col 46, Missing semicolon.\ncomponents/hm-product-display/component.js: line 9, col 40, Missing semicolon.\ncomponents/hm-product-display/component.js: line 12, col 41, Missing semicolon.\ncomponents/hm-product-display/component.js: line 15, col 45, Missing semicolon.\n\n4 errors'); 
+    assert.ok(true, 'components/hm-product-display/component.js should pass jshint.'); 
   });
 
 });
@@ -4911,7 +4904,7 @@ define('harvestman/tests/components/hm-slideshow/component.jshint', function () 
 
   QUnit.module('JSHint - components/hm-slideshow');
   QUnit.test('components/hm-slideshow/component.js should pass jshint', function(assert) { 
-    assert.ok(false, 'components/hm-slideshow/component.js should pass jshint.\ncomponents/hm-slideshow/component.js: line 9, col 18, \'$\' is not defined.\ncomponents/hm-slideshow/component.js: line 13, col 5, \'$\' is not defined.\n\n2 errors'); 
+    assert.ok(true, 'components/hm-slideshow/component.js should pass jshint.'); 
   });
 
 });
@@ -4982,149 +4975,6 @@ define('harvestman/tests/image/model.jshint', function () {
   });
 
 });
-define('harvestman/tests/integration/components/hm-file-uploader/component-test', ['ember-qunit'], function (ember_qunit) {
-
-  'use strict';
-
-  ember_qunit.moduleForComponent('hm-file-uploader', 'Integration | Component | hm file uploader', {
-    integration: true
-  });
-
-  ember_qunit.test('it renders', function (assert) {
-    assert.expect(2);
-
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
-    this.render(Ember.HTMLBars.template((function () {
-      return {
-        meta: {
-          'revision': 'Ember@1.13.7',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 1,
-              'column': 20
-            }
-          }
-        },
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-          dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
-          return morphs;
-        },
-        statements: [['content', 'hm-file-uploader', ['loc', [null, [1, 0], [1, 20]]]]],
-        locals: [],
-        templates: []
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'revision': 'Ember@1.13.7',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'revision': 'Ember@1.13.7',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'hm-file-uploader', [], [], 0, null, ['loc', [null, [2, 4], [4, 25]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
-  });
-
-});
-define('harvestman/tests/integration/components/hm-file-uploader/component-test.jshint', function () {
-
-  'use strict';
-
-  QUnit.module('JSHint - integration/components/hm-file-uploader');
-  QUnit.test('integration/components/hm-file-uploader/component-test.js should pass jshint', function(assert) { 
-    assert.ok(true, 'integration/components/hm-file-uploader/component-test.js should pass jshint.'); 
-  });
-
-});
 define('harvestman/tests/integration/components/hm-footer/component-test', ['ember-qunit'], function (ember_qunit) {
 
   'use strict';
@@ -5133,8 +4983,8 @@ define('harvestman/tests/integration/components/hm-footer/component-test', ['emb
     integration: true
   });
 
-  ember_qunit.test('it renders', function (assert) {
-    assert.expect(2);
+  ember_qunit.test('it displays the copyright', function (assert) {
+    assert.expect(1);
 
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
@@ -5177,84 +5027,7 @@ define('harvestman/tests/integration/components/hm-footer/component-test', ['emb
       };
     })()));
 
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'revision': 'Ember@1.13.7',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'revision': 'Ember@1.13.7',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'hm-footer', [], [], 0, null, ['loc', [null, [2, 4], [4, 18]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$().text().trim(), '© 2015 Copyright Industrial Music Electronics');
   });
 
 });
@@ -5276,12 +5049,9 @@ define('harvestman/tests/integration/components/hm-image/component-test', ['embe
     integration: true
   });
 
-  ember_qunit.test('it renders', function (assert) {
-    assert.expect(2);
-
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
+  ember_qunit.test('it displays an image', function (assert) {
+    assert.expect(1);
+    this.set('url', 'foobar.jpg');
     this.render(Ember.HTMLBars.template((function () {
       return {
         meta: {
@@ -5294,7 +5064,7 @@ define('harvestman/tests/integration/components/hm-image/component-test', ['embe
             },
             'end': {
               'line': 1,
-              'column': 12
+              'column': 20
             }
           }
         },
@@ -5314,90 +5084,12 @@ define('harvestman/tests/integration/components/hm-image/component-test', ['embe
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'hm-image', ['loc', [null, [1, 0], [1, 12]]]]],
+        statements: [['inline', 'hm-image', [], ['url', ['subexpr', '@mut', [['get', 'url', ['loc', [null, [1, 15], [1, 18]]]]], [], []]], ['loc', [null, [1, 0], [1, 20]]]]],
         locals: [],
         templates: []
       };
     })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'revision': 'Ember@1.13.7',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'revision': 'Ember@1.13.7',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'hm-image', [], [], 0, null, ['loc', [null, [2, 4], [4, 17]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$('img').attr('src'), 'foobar.jpg');
   });
 
 });
@@ -5411,7 +5103,7 @@ define('harvestman/tests/integration/components/hm-image/component-test.jshint',
   });
 
 });
-define('harvestman/tests/integration/components/hm-images/component-test', ['ember-qunit'], function (ember_qunit) {
+define('harvestman/tests/integration/components/hm-images/component-test', ['ember-qunit', 'ember'], function (ember_qunit, Ember) {
 
   'use strict';
 
@@ -5419,13 +5111,12 @@ define('harvestman/tests/integration/components/hm-images/component-test', ['emb
     integration: true
   });
 
-  ember_qunit.test('it renders', function (assert) {
-    assert.expect(2);
+  ember_qunit.test('it displays an array of images', function (assert) {
+    assert.expect(3);
+    var images = [{ url: 'foo.jpg' }, { url: 'bar.jpg' }];
 
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
-    this.render(Ember.HTMLBars.template((function () {
+    this.set('images', images);
+    this.render(Ember['default'].HTMLBars.template((function () {
       return {
         meta: {
           'revision': 'Ember@1.13.7',
@@ -5437,7 +5128,7 @@ define('harvestman/tests/integration/components/hm-images/component-test', ['emb
             },
             'end': {
               'line': 1,
-              'column': 13
+              'column': 27
             }
           }
         },
@@ -5457,90 +5148,16 @@ define('harvestman/tests/integration/components/hm-images/component-test', ['emb
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'hm-images', ['loc', [null, [1, 0], [1, 13]]]]],
+        statements: [['inline', 'hm-images', [], ['images', ['subexpr', '@mut', [['get', 'images', ['loc', [null, [1, 19], [1, 25]]]]], [], []]], ['loc', [null, [1, 0], [1, 27]]]]],
         locals: [],
         templates: []
       };
     })()));
 
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'revision': 'Ember@1.13.7',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'revision': 'Ember@1.13.7',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'hm-images', [], [], 0, null, ['loc', [null, [2, 4], [4, 18]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
+    var renderedImages = this.$('img');
+    assert.equal(renderedImages.length, 2);
+    assert.equal(Ember['default'].$(renderedImages[0]).attr('src'), 'foo.jpg');
+    assert.equal(Ember['default'].$(renderedImages[1]).attr('src'), 'bar.jpg');
   });
 
 });
@@ -5562,12 +5179,15 @@ define('harvestman/tests/integration/components/hm-page-display/component-test',
     integration: true
   });
 
-  ember_qunit.test('it renders', function (assert) {
+  ember_qunit.test('it displays the edit page', function (assert) {
     assert.expect(2);
+    var page = {
+      title: 'foo title',
+      id: 666,
+      content: 'foo content'
+    };
 
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
+    this.set('page', page);
     this.render(Ember.HTMLBars.template((function () {
       return {
         meta: {
@@ -5580,7 +5200,7 @@ define('harvestman/tests/integration/components/hm-page-display/component-test',
             },
             'end': {
               'line': 1,
-              'column': 19
+              'column': 29
             }
           }
         },
@@ -5600,90 +5220,13 @@ define('harvestman/tests/integration/components/hm-page-display/component-test',
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'hm-page-display', ['loc', [null, [1, 0], [1, 19]]]]],
+        statements: [['inline', 'hm-page-display', [], ['page', ['subexpr', '@mut', [['get', 'page', ['loc', [null, [1, 23], [1, 27]]]]], [], []]], ['loc', [null, [1, 0], [1, 29]]]]],
         locals: [],
         templates: []
       };
     })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'revision': 'Ember@1.13.7',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'revision': 'Ember@1.13.7',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'hm-page-display', [], [], 0, null, ['loc', [null, [2, 4], [4, 24]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$('h5').text().trim(), 'foo title');
+    assert.equal(this.$('#page-content').text().trim(), 'foo content');
   });
 
 });
@@ -5705,12 +5248,15 @@ define('harvestman/tests/integration/components/hm-page-form/component-test', ['
     integration: true
   });
 
-  ember_qunit.test('it renders', function (assert) {
-    assert.expect(2);
+  ember_qunit.test('it displays the page form', function (assert) {
+    assert.expect(3);
+    var page = {
+      permalink: 'foo-permalink',
+      title: 'foo title',
+      content: 'foo content'
+    };
 
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
+    this.set('page', page);
     this.render(Ember.HTMLBars.template((function () {
       return {
         meta: {
@@ -5723,7 +5269,7 @@ define('harvestman/tests/integration/components/hm-page-form/component-test', ['
             },
             'end': {
               'line': 1,
-              'column': 16
+              'column': 26
             }
           }
         },
@@ -5743,90 +5289,15 @@ define('harvestman/tests/integration/components/hm-page-form/component-test', ['
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'hm-page-form', ['loc', [null, [1, 0], [1, 16]]]]],
+        statements: [['inline', 'hm-page-form', [], ['page', ['subexpr', '@mut', [['get', 'page', ['loc', [null, [1, 20], [1, 24]]]]], [], []]], ['loc', [null, [1, 0], [1, 26]]]]],
         locals: [],
         templates: []
       };
     })()));
 
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'revision': 'Ember@1.13.7',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'revision': 'Ember@1.13.7',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'hm-page-form', [], [], 0, null, ['loc', [null, [2, 4], [4, 21]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$('#page-permalink').val(), 'foo-permalink');
+    assert.equal(this.$('#page-title').val(), 'foo title');
+    assert.equal(this.$('#page-content').val(), 'foo content');
   });
 
 });
@@ -5848,12 +5319,18 @@ define('harvestman/tests/integration/components/hm-product-form/component-test',
     integration: true
   });
 
-  ember_qunit.test('it renders', function (assert) {
-    assert.expect(2);
+  ember_qunit.test('it displays the product form', function (assert) {
+    assert.expect(5);
+    var product = {
+      images: [],
+      name: 'foo name',
+      modelNumber: 'foo-model-number',
+      briefDescription: 'foo brief description',
+      description: 'foo description',
+      manual: 'foo manual'
+    };
 
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.on('myAction', function(val) { ... });
-
+    this.set('product', product);
     this.render(Ember.HTMLBars.template((function () {
       return {
         meta: {
@@ -5866,7 +5343,7 @@ define('harvestman/tests/integration/components/hm-product-form/component-test',
             },
             'end': {
               'line': 1,
-              'column': 19
+              'column': 35
             }
           }
         },
@@ -5886,90 +5363,16 @@ define('harvestman/tests/integration/components/hm-product-form/component-test',
           dom.insertBoundary(fragment, null);
           return morphs;
         },
-        statements: [['content', 'hm-product-form', ['loc', [null, [1, 0], [1, 19]]]]],
+        statements: [['inline', 'hm-product-form', [], ['product', ['subexpr', '@mut', [['get', 'product', ['loc', [null, [1, 26], [1, 33]]]]], [], []]], ['loc', [null, [1, 0], [1, 35]]]]],
         locals: [],
         templates: []
       };
     })()));
-
-    assert.equal(this.$().text().trim(), '');
-
-    // Template block usage:
-    this.render(Ember.HTMLBars.template((function () {
-      var child0 = (function () {
-        return {
-          meta: {
-            'revision': 'Ember@1.13.7',
-            'loc': {
-              'source': null,
-              'start': {
-                'line': 2,
-                'column': 4
-              },
-              'end': {
-                'line': 4,
-                'column': 4
-              }
-            }
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode('      template block text\n');
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() {
-            return [];
-          },
-          statements: [],
-          locals: [],
-          templates: []
-        };
-      })();
-
-      return {
-        meta: {
-          'revision': 'Ember@1.13.7',
-          'loc': {
-            'source': null,
-            'start': {
-              'line': 1,
-              'column': 0
-            },
-            'end': {
-              'line': 5,
-              'column': 2
-            }
-          }
-        },
-        arity: 0,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode('\n');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment('');
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode('  ');
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(1);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          return morphs;
-        },
-        statements: [['block', 'hm-product-form', [], [], 0, null, ['loc', [null, [2, 4], [4, 24]]]]],
-        locals: [],
-        templates: [child0]
-      };
-    })()));
-
-    assert.equal(this.$().text().trim(), 'template block text');
+    assert.equal(this.$('#product-name').val(), product.name);
+    assert.equal(this.$('#product-model-number').val(), product.modelNumber);
+    assert.equal(this.$('#product-brief-description').val(), product.briefDescription);
+    assert.equal(this.$('#product-description').val(), product.description);
+    assert.equal(this.$('#product-manual').val(), product.manual);
   });
 
 });
@@ -7068,7 +6471,7 @@ catch(err) {
 if (runningTests) {
   require("harvestman/tests/test-helper");
 } else {
-  require("harvestman/app")["default"].create({"name":"harvestman","version":"0.0.0+b1a46dda"});
+  require("harvestman/app")["default"].create({"name":"harvestman","version":"0.0.0+d9f071d0"});
 }
 
 /* jshint ignore:end */

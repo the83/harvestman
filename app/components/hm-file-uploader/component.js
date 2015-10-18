@@ -28,7 +28,7 @@ export default EmberUploader.FileField.extend({
       uploader.upload(files[0]).then((response) => {
         this.get('model.images').pushObject(
           this.get('store').createRecord('image', response.image)
-        )
+        );
       });
     }
   }

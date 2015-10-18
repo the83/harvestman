@@ -6,11 +6,11 @@ export default Ember.Component.extend({
   }.on('didRender'),
 
   _initSlider: function() {
-    let slider = $('.slider');
+    let slider = Ember.$('.slider');
     if(slider.find('img').attr('src').match(/data/)) { return; }
 
     // for some reason reinitializing the slider doesn't GC the indicators
-    $('.indicators').remove();
+    Ember.$('.indicators').remove();
     slider.slider({
       height: 300
     });

@@ -5,22 +5,16 @@ moduleForComponent('hm-page-display', 'Integration | Component | hm page display
   integration: true
 });
 
-test('it renders', function(assert) {
+test('it displays the edit page', function(assert) {
   assert.expect(2);
+  let page = {
+    title: 'foo title',
+    id: 666,
+    content: 'foo content'
+  };
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{hm-page-display}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#hm-page-display}}
-      template block text
-    {{/hm-page-display}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  this.set('page', page);
+  this.render(hbs`{{hm-page-display page=page}}`);
+  assert.equal(this.$('h5').text().trim(), 'foo title');
+  assert.equal(this.$('#page-content').text().trim(), 'foo content');
 });

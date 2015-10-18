@@ -5,22 +5,9 @@ moduleForComponent('hm-image', 'Integration | Component | hm image', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  assert.expect(2);
-
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{hm-image}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#hm-image}}
-      template block text
-    {{/hm-image}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+test('it displays an image', function(assert) {
+  assert.expect(1);
+  this.set('url', 'foobar.jpg');
+  this.render(hbs`{{hm-image url=url}}`);
+  assert.equal(this.$('img').attr('src'), 'foobar.jpg');
 });

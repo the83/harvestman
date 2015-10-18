@@ -5,22 +5,18 @@ moduleForComponent('hm-page-form', 'Integration | Component | hm page form', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  assert.expect(2);
+test('it displays the page form', function(assert) {
+  assert.expect(3);
+  let page = {
+    permalink: 'foo-permalink',
+    title: 'foo title',
+    content: 'foo content'
+  };
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
+  this.set('page', page);
+  this.render(hbs`{{hm-page-form page=page}}`);
 
-  this.render(hbs`{{hm-page-form}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#hm-page-form}}
-      template block text
-    {{/hm-page-form}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$('#page-permalink').val(), 'foo-permalink');
+  assert.equal(this.$('#page-title').val(), 'foo title');
+  assert.equal(this.$('#page-content').val(), 'foo content');
 });
