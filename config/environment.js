@@ -21,8 +21,16 @@ module.exports = function(environment) {
       includePaths: ['bower_components/materialize/sass']
     },
     contentSecurityPolicy: {
-      'img-src': "'self' data:"
-    }
+      'img-src': "'self' data:",
+      'connect-src': "*"
+    },
+    'simple-auth': {
+      authorizer: 'simple-auth-authorizer:devise'
+    },
+    'simple-auth-devise': {
+      tokenAttributeName: 'token',
+      identificationAttributeName: 'email'
+    },
   };
 
   if (environment === 'development') {

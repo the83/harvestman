@@ -9,12 +9,19 @@
     "ember-qunit": "0.4.9",
     "ember-qunit-notifications": "0.0.7",
     "ember-resolver": "~0.1.18",
+    "ember-simple-auth": "0.8.0",
     "ember-uploader": "0.3.9",
     "jquery": "^1.11.3",
     "loader.js": "ember-cli/loader.js#3.2.1",
     "materialize": "~0.97.0",
+    "photoswipe": "~4.1.0",
+    "pretender": "^0.10.0",
     "qunit": "~1.18.0",
-    "sinonjs": "~1.17.1",
-    "pretender": "^0.10.0"
+    "rails-csrf": "0.0.5",
+    "sinonjs": "~1.17.1"
+  },
+  "resolutions": {
+    "ember": "1.13.7",
+    "rails-csrf": "0.0.5"
   }
 }

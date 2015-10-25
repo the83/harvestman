@@ -18,21 +18,52 @@ define('harvestman/app', ['exports', 'ember', 'ember/resolver', 'ember/load-init
   });
 
   loadInitializers['default'](App, config['default'].modulePrefix);
+  loadInitializers['default'](App, 'rails-csrf');
 
   exports['default'] = App;
 
 });
-define('harvestman/application/adapter', ['exports', 'ember-data', 'ember'], function (exports, DS, Ember) {
+define('harvestman/application/adapter', ['exports', 'ember-data', 'ember-simple-auth/mixins/data-adapter-mixin'], function (exports, DS, DataAdapterMixin) {
 
   'use strict';
 
-  exports['default'] = DS['default'].ActiveModelAdapter.extend({
+  exports['default'] = DS['default'].ActiveModelAdapter.extend(DataAdapterMixin['default'], {
+    authorizer: 'authorizer:devise',
+    namespace: 'api',
     headers: (function () {
       return {
-        "X-XSRF-TOKEN": decodeURIComponent(Ember['default'].get(document.cookie.match(/XSRF\-TOKEN\=([^;]*)/), "1"))
+        "X-XSRF-TOKEN": decodeURIComponent(Ember.get(document.cookie.match(/XSRF\-TOKEN\=([^;]*)/), "1"))
       };
     }).property().volatile()
   });
+
+});
+define('harvestman/application/route', ['exports', 'ember', 'ember-simple-auth/mixins/application-route-mixin'], function (exports, Ember, ApplicationRouteMixin) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Route.extend(ApplicationRouteMixin['default'], {
+    beforeModel: function beforeModel() {
+      this._super.apply(this, arguments);
+      return this.csrf.fetchToken();
+    }
+  });
+
+});
+define('harvestman/authenticators/devise', ['exports', 'ember-simple-auth/authenticators/devise'], function (exports, Devise) {
+
+  'use strict';
+
+  exports['default'] = Devise['default'].extend({
+    serverTokenEndpoint: 'http://localhost:3000/users/sign_in'
+  });
+
+});
+define('harvestman/authorizers/devise', ['exports', 'ember-simple-auth/authorizers/devise'], function (exports, Devise) {
+
+	'use strict';
+
+	exports['default'] = Devise['default'].extend({});
 
 });
 define('harvestman/components/app-version', ['exports', 'ember-cli-app-version/components/app-version', 'harvestman/config/environment'], function (exports, AppVersionComponent, config) {
@@ -2420,6 +2451,20 @@ define('harvestman/components/radio-button', ['exports', 'ember-radio-button/com
 	exports['default'] = RadioButton['default'];
 
 });
+define('harvestman/controllers/application', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Controller.extend({
+    session: Ember['default'].inject.service('session'),
+    actions: {
+      invalidateSession: function invalidateSession() {
+        this.get('session').invalidate();
+      }
+    }
+  });
+
+});
 define('harvestman/controllers/array', ['exports', 'ember'], function (exports, Ember) {
 
 	'use strict';
@@ -2469,6 +2514,23 @@ define('harvestman/initializers/app-version', ['exports', 'ember-cli-app-version
   };
 
 });
+define('harvestman/initializers/ember-simple-auth', ['exports', 'ember', 'harvestman/config/environment', 'ember-simple-auth/configuration', 'ember-simple-auth/initializers/setup-session', 'ember-simple-auth/initializers/setup-session-service'], function (exports, Ember, ENV, Configuration, setupSession, setupSessionService) {
+
+  'use strict';
+
+  exports['default'] = {
+    name: 'ember-simple-auth',
+    initialize: function initialize(registry) {
+      var config = ENV['default']['ember-simple-auth'] || {};
+      config.baseURL = ENV['default'].baseURL;
+      Configuration['default'].load(config);
+
+      setupSession['default'](registry);
+      setupSessionService['default'](registry);
+    }
+  };
+
+});
 define('harvestman/initializers/export-application-global', ['exports', 'ember', 'harvestman/config/environment'], function (exports, Ember, config) {
 
   'use strict';
@@ -2499,8 +2561,6 @@ define('harvestman/initializers/export-application-global', ['exports', 'ember',
       }
     }
   }
-
-  ;
 
   exports['default'] = {
     name: 'export-application-global',
@@ -2591,6 +2651,18 @@ define('harvestman/initializers/md-settings', ['exports', 'harvestman/config/env
   exports['default'] = {
     name: 'md-settings',
     initialize: initialize
+  };
+
+});
+define('harvestman/instance-initializers/ember-simple-auth', ['exports', 'ember-simple-auth/instance-initializers/setup-session-restoration'], function (exports, setupSessionRestoration) {
+
+  'use strict';
+
+  exports['default'] = {
+    name: 'ember-simple-auth',
+    initialize: function initialize(instance) {
+      setupSessionRestoration['default'](instance);
+    }
   };
 
 });
@@ -2876,6 +2948,139 @@ define('harvestman/key-responder', ['exports', 'ember'], function (exports, Embe
   exports.KEY_EVENTS = KEY_EVENTS;
   exports.MODIFIED_KEY_EVENTS = MODIFIED_KEY_EVENTS;
   exports.KeyResponderInputSupport = KeyResponderInputSupport;
+
+});
+define('harvestman/login/route', ['exports', 'ember', 'ember-simple-auth/mixins/unauthenticated-route-mixin'], function (exports, Ember, UnauthenticatedRouteMixin) {
+
+  'use strict';
+
+  var service = Ember['default'].inject.service;
+
+  exports['default'] = Ember['default'].Route.extend(UnauthenticatedRouteMixin['default'], {
+    model: function model() {
+      return Ember['default'].Object.create({
+        identification: null,
+        password: null
+      });
+    },
+    session: Ember['default'].inject.service(),
+    actions: {
+      authenticate: function authenticate() {
+        var _this = this;
+
+        var identification = this.modelFor('login').get('identification');
+        var password = this.modelFor('login').get('password');
+
+        return this.get('session').authenticate('authenticator:devise', identification, password)['catch'](function (reason) {
+          _this.set('errorMessage', reason.error);
+        });
+      }
+    }
+  });
+
+});
+define('harvestman/login/template', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 16,
+            "column": 0
+          }
+        },
+        "moduleName": "harvestman/login/template.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("label");
+        dom.setAttribute(el3,"for","identification");
+        var el4 = dom.createTextNode("E-mail");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("br");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("label");
+        dom.setAttribute(el3,"for","password");
+        var el4 = dom.createTextNode("Password");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("br");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("button");
+        dom.setAttribute(el3,"type","submit");
+        var el4 = dom.createTextNode("Log in");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [0]);
+        var morphs = new Array(3);
+        morphs[0] = dom.createElementMorph(element0);
+        morphs[1] = dom.createMorphAt(dom.childAt(element0, [1]),4,4);
+        morphs[2] = dom.createMorphAt(dom.childAt(element0, [3]),4,4);
+        return morphs;
+      },
+      statements: [
+        ["element","action",["authenticate"],["on","submit"],["loc",[null,[1,6],[1,43]]]],
+        ["inline","input",[],["value",["subexpr","@mut",[["get","model.identification",["loc",[null,[4,18],[4,38]]]]],[],[]],"placeholder","E-mail","type","text","name","email"],["loc",[null,[4,4],[4,86]]]],
+        ["inline","input",[],["value",["subexpr","@mut",[["get","model.password",["loc",[null,[9,18],[9,32]]]]],[],[]],"placeholder","Password","type","password","name","password"],["loc",[null,[9,4],[9,89]]]]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
 
 });
 define('harvestman/page/adapter', ['exports', 'harvestman/application/adapter'], function (exports, ApplicationAdapter) {
@@ -3701,6 +3906,7 @@ define('harvestman/router', ['exports', 'ember', 'harvestman/config/environment'
   });
 
   Router.map(function () {
+    this.route('index');
     this.resource('product', { path: '/products' });
     this.route('product.new', { path: '/products/new' });
     this.route('product.edit', { path: '/products/:product_id/edit' });
@@ -3718,9 +3924,17 @@ define('harvestman/router', ['exports', 'ember', 'harvestman/config/environment'
     this.resource('news', { path: '/news' }, function () {});
     this.resource('firmware', { path: '/pages/firmware' }, function () {});
     this.resource('systems', { path: '/systems' }, function () {});
+    this.route('login');
   });
 
   exports['default'] = Router;
+
+});
+define('harvestman/routes/application', ['exports', 'ember'], function (exports, Ember) {
+
+	'use strict';
+
+	exports['default'] = Ember['default'].Route.extend();
 
 });
 define('harvestman/services/md-settings', ['exports', 'ember-cli-materialize/services/md-settings'], function (exports, md_settings) {
@@ -3737,6 +3951,20 @@ define('harvestman/services/modal-dialog', ['exports', 'ember-modal-dialog/servi
 	'use strict';
 
 	exports['default'] = Service['default'];
+
+});
+define('harvestman/services/session', ['exports', 'ember-simple-auth/services/session'], function (exports, SessionService) {
+
+	'use strict';
+
+	exports['default'] = SessionService['default'];
+
+});
+define('harvestman/session-stores/application', ['exports', 'ember-simple-auth/session-stores/adaptive'], function (exports, Adaptive) {
+
+	'use strict';
+
+	exports['default'] = Adaptive['default'].extend();
 
 });
 define('harvestman/templates/application', ['exports'], function (exports) {
@@ -4030,6 +4258,52 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         templates: []
       };
     }());
+    var child7 = (function() {
+      return {
+        meta: {
+          "revision": "Ember@1.13.7",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 31,
+              "column": 8
+            },
+            "end": {
+              "line": 35,
+              "column": 8
+            }
+          },
+          "moduleName": "harvestman/templates/application.hbs"
+        },
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("          ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("a");
+          dom.setAttribute(el1,"href","#");
+          var el2 = dom.createTextNode("\n            Logout\n          ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var element0 = dom.childAt(fragment, [1]);
+          var morphs = new Array(1);
+          morphs[0] = dom.createElementMorph(element0);
+          return morphs;
+        },
+        statements: [
+          ["element","action",["invalidateSession"],[],["loc",[null,[32,22],[32,52]]]]
+        ],
+        locals: [],
+        templates: []
+      };
+    }());
     return {
       meta: {
         "revision": "Ember@1.13.7",
@@ -4040,7 +4314,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 42,
+            "line": 45,
             "column": 0
           }
         },
@@ -4115,6 +4389,8 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         dom.appendChild(el4, el5);
         var el5 = dom.createComment("");
         dom.appendChild(el4, el5);
+        var el5 = dom.createComment("");
+        dom.appendChild(el4, el5);
         var el5 = dom.createTextNode("      ");
         dom.appendChild(el4, el5);
         dom.appendChild(el3, el4);
@@ -4138,7 +4414,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n");
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
@@ -4147,18 +4423,19 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element0 = dom.childAt(fragment, [2, 1, 1]);
-        var element1 = dom.childAt(element0, [3]);
-        var morphs = new Array(9);
-        morphs[0] = dom.createMorphAt(dom.childAt(element0, [1, 1]),0,0);
-        morphs[1] = dom.createMorphAt(element1,1,1);
-        morphs[2] = dom.createMorphAt(element1,2,2);
-        morphs[3] = dom.createMorphAt(element1,3,3);
-        morphs[4] = dom.createMorphAt(element1,4,4);
-        morphs[5] = dom.createMorphAt(element1,5,5);
-        morphs[6] = dom.createMorphAt(element1,6,6);
-        morphs[7] = dom.createMorphAt(dom.childAt(fragment, [4]),1,1);
-        morphs[8] = dom.createMorphAt(fragment,6,6,contextualElement);
+        var element1 = dom.childAt(fragment, [2, 1, 1]);
+        var element2 = dom.childAt(element1, [3]);
+        var morphs = new Array(10);
+        morphs[0] = dom.createMorphAt(dom.childAt(element1, [1, 1]),0,0);
+        morphs[1] = dom.createMorphAt(element2,1,1);
+        morphs[2] = dom.createMorphAt(element2,2,2);
+        morphs[3] = dom.createMorphAt(element2,3,3);
+        morphs[4] = dom.createMorphAt(element2,4,4);
+        morphs[5] = dom.createMorphAt(element2,5,5);
+        morphs[6] = dom.createMorphAt(element2,6,6);
+        morphs[7] = dom.createMorphAt(element2,7,7);
+        morphs[8] = dom.createMorphAt(dom.childAt(fragment, [4]),1,1);
+        morphs[9] = dom.createMorphAt(fragment,6,6,contextualElement);
         return morphs;
       },
       statements: [
@@ -4169,11 +4446,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         ["block","link-to",["news"],["tagName","li"],4,null,["loc",[null,[22,8],[24,20]]]],
         ["block","link-to",["media"],["tagName","li"],5,null,["loc",[null,[25,8],[27,20]]]],
         ["block","link-to",["firmware"],["tagName","li"],6,null,["loc",[null,[28,8],[30,20]]]],
-        ["content","outlet",["loc",[null,[37,2],[37,12]]]],
-        ["content","md-modal-container",["loc",[null,[41,0],[41,22]]]]
+        ["block","if",[["get","session.isAuthenticated",["loc",[null,[31,14],[31,37]]]]],[],7,null,["loc",[null,[31,8],[35,15]]]],
+        ["content","outlet",["loc",[null,[42,2],[42,12]]]],
+        ["content","md-modal-container",["loc",[null,[44,0],[44,22]]]]
       ],
       locals: [],
-      templates: [child0, child1, child2, child3, child4, child5, child6]
+      templates: [child0, child1, child2, child3, child4, child5, child6, child7]
     };
   }()));
 
@@ -4794,7 +5072,37 @@ define('harvestman/tests/application/adapter.jshint', function () {
 
   QUnit.module('JSHint - application');
   QUnit.test('application/adapter.js should pass jshint', function(assert) { 
-    assert.ok(true, 'application/adapter.js should pass jshint.'); 
+    assert.ok(false, 'application/adapter.js should pass jshint.\napplication/adapter.js: line 10, col 6, Missing semicolon.\napplication/adapter.js: line 9, col 42, \'Ember\' is not defined.\n\n2 errors'); 
+  });
+
+});
+define('harvestman/tests/application/route.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - application');
+  QUnit.test('application/route.js should pass jshint', function(assert) { 
+    assert.ok(true, 'application/route.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/authenticators/devise.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - authenticators');
+  QUnit.test('authenticators/devise.js should pass jshint', function(assert) { 
+    assert.ok(true, 'authenticators/devise.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/authorizers/devise.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - authorizers');
+  QUnit.test('authorizers/devise.js should pass jshint', function(assert) { 
+    assert.ok(true, 'authorizers/devise.js should pass jshint.'); 
   });
 
 });
@@ -4906,6 +5214,61 @@ define('harvestman/tests/components/hm-slideshow/component.jshint', function () 
   QUnit.test('components/hm-slideshow/component.js should pass jshint', function(assert) { 
     assert.ok(true, 'components/hm-slideshow/component.js should pass jshint.'); 
   });
+
+});
+define('harvestman/tests/controllers/application.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - controllers');
+  QUnit.test('controllers/application.js should pass jshint', function(assert) { 
+    assert.ok(true, 'controllers/application.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/helpers/ember-simple-auth', ['exports', 'ember-simple-auth/authenticators/test'], function (exports, Test) {
+
+  'use strict';
+
+  exports.authenticateSession = authenticateSession;
+  exports.currentSession = currentSession;
+  exports.invalidateSession = invalidateSession;
+
+  var TEST_CONTAINER_KEY = 'authenticator:test';
+
+  function ensureAuthenticator(app, container) {
+    var authenticator = container.lookup(TEST_CONTAINER_KEY);
+    if (!authenticator) {
+      app.register(TEST_CONTAINER_KEY, Test['default']);
+    }
+  }
+
+  function authenticateSession(app, sessionData) {
+    var container = app.__container__;
+
+    var session = container.lookup('service:session');
+    ensureAuthenticator(app, container);
+    session.authenticate(TEST_CONTAINER_KEY, sessionData);
+    return wait();
+  }
+
+  ;
+
+  function currentSession(app) {
+    return app.__container__.lookup('service:session');
+  }
+
+  ;
+
+  function invalidateSession(app) {
+    var session = app.__container__.lookup('service:session');
+    if (session.get('isAuthenticated')) {
+      session.invalidate();
+    }
+    return wait();
+  }
+
+  ;
 
 });
 define('harvestman/tests/helpers/resolver', ['exports', 'ember/resolver', 'harvestman/config/environment'], function (exports, Resolver, config) {
@@ -5675,6 +6038,16 @@ define('harvestman/tests/integration/components/hm-slideshow/component-test.jshi
   });
 
 });
+define('harvestman/tests/login/route.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - login');
+  QUnit.test('login/route.js should pass jshint', function(assert) { 
+    assert.ok(false, 'login/route.js should pass jshint.\nlogin/route.js: line 3, col 17, \'service\' is defined but never used.\n\n1 error'); 
+  });
+
+});
 define('harvestman/tests/page/adapter.jshint', function () {
 
   'use strict';
@@ -5875,6 +6248,57 @@ define('harvestman/tests/unit/image/model-test.jshint', function () {
   QUnit.module('JSHint - unit/image');
   QUnit.test('unit/image/model-test.js should pass jshint', function(assert) { 
     assert.ok(true, 'unit/image/model-test.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/unit/login/controller-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor('controller:login', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  // Replace this with your real tests.
+  ember_qunit.test('it exists', function (assert) {
+    var controller = this.subject();
+    assert.ok(controller);
+  });
+
+});
+define('harvestman/tests/unit/login/controller-test.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - unit/login');
+  QUnit.test('unit/login/controller-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'unit/login/controller-test.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/unit/login/route-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor('route:login', 'Unit | Route | login', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  ember_qunit.test('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+
+});
+define('harvestman/tests/unit/login/route-test.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - unit/login');
+  QUnit.test('unit/login/route-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'unit/login/route-test.js should pass jshint.'); 
   });
 
 });
@@ -6188,7 +6612,7 @@ catch(err) {
 if (runningTests) {
   require("harvestman/tests/test-helper");
 } else {
-  require("harvestman/app")["default"].create({"name":"harvestman","version":"0.0.0+307374e3"});
+  require("harvestman/app")["default"].create({"name":"harvestman","version":"0.0.0+76189235"});
 }
 
 /* jshint ignore:end */
