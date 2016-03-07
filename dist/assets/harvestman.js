@@ -726,6 +726,266 @@ define('harvestman/components/hm-page-form/template', ['exports'], function (exp
   }()));
 
 });
+define('harvestman/components/hm-post-display/component', ['exports', 'ember'], function (exports, Ember) {
+
+	'use strict';
+
+	exports['default'] = Ember['default'].Component.extend({});
+
+});
+define('harvestman/components/hm-post-display/template', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 3,
+            "column": 0
+          }
+        },
+        "moduleName": "harvestman/components/hm-post-display/template.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("h5");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("p");
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(2);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]),0,0);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]),0,0);
+        return morphs;
+      },
+      statements: [
+        ["content","post.title",["loc",[null,[1,4],[1,18]]]],
+        ["content","post.content",["loc",[null,[2,3],[2,19]]]]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('harvestman/components/hm-post-form/component', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Component.extend({
+    actions: {
+      save: function save() {
+        this.sendAction();
+      }
+    }
+  });
+
+});
+define('harvestman/components/hm-post-form/template', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 39,
+            "column": 0
+          }
+        },
+        "moduleName": "harvestman/components/hm-post-form/template.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("form");
+        dom.setAttribute(el1,"id","post-form");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","col s12");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","input-field col s12");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("label");
+        dom.setAttribute(el4,"class","active");
+        dom.setAttribute(el4,"for","post-title");
+        var el5 = dom.createTextNode("Title");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","input-field col s12");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("label");
+        dom.setAttribute(el4,"class","active");
+        dom.setAttribute(el4,"for","post-permalink");
+        var el5 = dom.createTextNode("permalink");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","input-field col s12");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("label");
+        dom.setAttribute(el4,"class","active");
+        dom.setAttribute(el4,"for","post-content");
+        var el5 = dom.createTextNode("Content");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","input-field col s12");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4,"class","btn");
+        dom.setAttribute(el4,"type","submit");
+        dom.setAttribute(el4,"id","save-button");
+        var el5 = dom.createTextNode("\n        Submit\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var element0 = dom.childAt(fragment, [0]);
+        var element1 = dom.childAt(element0, [11, 1, 1]);
+        var morphs = new Array(6);
+        morphs[0] = dom.createMorphAt(element0,1,1);
+        morphs[1] = dom.createMorphAt(dom.childAt(element0, [3, 1]),1,1);
+        morphs[2] = dom.createMorphAt(dom.childAt(element0, [5, 1]),1,1);
+        morphs[3] = dom.createMorphAt(dom.childAt(element0, [7, 1]),1,1);
+        morphs[4] = dom.createMorphAt(dom.childAt(element0, [9, 1]),1,1);
+        morphs[5] = dom.createElementMorph(element1);
+        return morphs;
+      },
+      statements: [
+        ["inline","hm-images",[],["images",["subexpr","@mut",[["get","post.images",["loc",[null,[2,21],[2,32]]]]],[],[]]],["loc",[null,[2,2],[2,34]]]],
+        ["inline","hm-file-uploader",[],["store",["subexpr","@mut",[["get","store",["loc",[null,[6,31],[6,36]]]]],[],[]],"model",["subexpr","@mut",[["get","post",["loc",[null,[6,43],[6,47]]]]],[],[]],"objectId",["subexpr","@mut",[["get","post.id",["loc",[null,[6,57],[6,64]]]]],[],[]],"objectType","posts"],["loc",[null,[6,6],[6,85]]]],
+        ["inline","input",[],["type","text","id","post-title","value",["subexpr","@mut",[["get","post.title",["loc",[null,[12,48],[12,58]]]]],[],[]]],["loc",[null,[12,6],[12,60]]]],
+        ["inline","input",[],["type","text","id","post-permalink","value",["subexpr","@mut",[["get","post.permalink",["loc",[null,[19,52],[19,66]]]]],[],[]]],["loc",[null,[19,6],[19,68]]]],
+        ["inline","textarea",[],["id","post-content","class","materialize-textarea","value",["subexpr","@mut",[["get","post-content",["loc",[null,[26,70],[26,82]]]]],[],[]]],["loc",[null,[26,6],[26,84]]]],
+        ["element","action",["save"],[],["loc",[null,[33,57],[33,74]]]]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
 define('harvestman/components/hm-product-display/component', ['exports', 'ember'], function (exports, Ember) {
 
   'use strict';
@@ -3634,6 +3894,496 @@ define('harvestman/page/template', ['exports'], function (exports) {
   }()));
 
 });
+define('harvestman/post/adapter', ['exports', 'harvestman/application/adapter'], function (exports, ApplicationAdapter) {
+
+  'use strict';
+
+  exports['default'] = ApplicationAdapter['default'].extend({
+    namespace: 'api/v1'
+  });
+
+});
+define('harvestman/post/base/route', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Route.extend({
+    model: function model(params) {
+      var post;
+      if (params.post_id) {
+        post = this.store.find('post', params.post_id);
+      } else {
+        post = this.store.createRecord('post');
+      }
+
+      return Ember['default'].RSVP.hash({
+        store: this.store,
+        post: post
+      });
+    },
+    actions: {
+      save: function save() {
+        var _this = this;
+
+        var model;
+        model = this.currentModel;
+        model.post.save().then(function (response) {
+          var parent = _this.container.lookup("route:post");
+          parent.refresh().then(function () {
+            _this.container.lookup('router:main').transitionTo('post.show', response.id);
+          });
+        });
+      }
+    }
+  });
+
+});
+define('harvestman/post/edit/route', ['exports', 'harvestman/post/base/route'], function (exports, BaseRoute) {
+
+	'use strict';
+
+	exports['default'] = BaseRoute['default'].extend({});
+
+});
+define('harvestman/post/edit/template', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 11,
+            "column": 0
+          }
+        },
+        "moduleName": "harvestman/post/edit/template.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h5");
+        var el4 = dom.createTextNode("Edit Post");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [2, 1]),1,1);
+        return morphs;
+      },
+      statements: [
+        ["inline","hm-post-form",[],["store",["subexpr","@mut",[["get","model.store",["loc",[null,[8,25],[8,36]]]]],[],[]],"post",["subexpr","@mut",[["get","model.post",["loc",[null,[8,42],[8,52]]]]],[],[]],"action","save"],["loc",[null,[8,4],[8,68]]]]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('harvestman/post/image/model', ['exports', 'ember-data'], function (exports, DS) {
+
+  'use strict';
+
+  exports['default'] = DS['default'].Model.extend({
+    url: DS['default'].attr('string'),
+    post: DS['default'].belongsTo('post'),
+    type: DS['default'].attr('string')
+  });
+
+});
+define('harvestman/post/model', ['exports', 'ember-data'], function (exports, DS) {
+
+  'use strict';
+
+  exports['default'] = DS['default'].Model.extend({
+    permalink: DS['default'].attr('string'),
+    title: DS['default'].attr('string'),
+    content: DS['default'].attr('string'),
+    images: DS['default'].hasMany('post.image', { async: 'false' })
+  });
+
+});
+define('harvestman/post/new/route', ['exports', 'harvestman/post/base/route'], function (exports, BaseRoute) {
+
+	'use strict';
+
+	exports['default'] = BaseRoute['default'].extend({});
+
+});
+define('harvestman/post/new/template', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 11,
+            "column": 0
+          }
+        },
+        "moduleName": "harvestman/post/new/template.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h5");
+        var el4 = dom.createTextNode("New Post");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [2, 1]),1,1);
+        return morphs;
+      },
+      statements: [
+        ["inline","hm-post-form",[],["store",["subexpr","@mut",[["get","model.store",["loc",[null,[8,25],[8,36]]]]],[],[]],"post",["subexpr","@mut",[["get","model.post",["loc",[null,[8,42],[8,52]]]]],[],[]],"action","save"],["loc",[null,[8,4],[8,68]]]]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('harvestman/post/route', ['exports', 'ember'], function (exports, Ember) {
+
+  'use strict';
+
+  exports['default'] = Ember['default'].Route.extend({
+    model: function model() {
+      var posts = this.store.query('post', {});
+      return Ember['default'].RSVP.hash({
+        posts: posts,
+        isIndex: true
+      });
+    }
+  });
+
+});
+define('harvestman/post/serializer', ['exports', 'ember-data'], function (exports, DS) {
+
+  'use strict';
+
+  exports['default'] = DS['default'].ActiveModelSerializer.extend(DS['default'].EmbeddedRecordsMixin, {
+    isNewSerializerAPI: true,
+    attrs: {
+      images: { embedded: 'always' }
+    }
+  });
+
+});
+define('harvestman/post/show/route', ['exports', 'harvestman/post/base/route'], function (exports, BaseRoute) {
+
+	'use strict';
+
+	exports['default'] = BaseRoute['default'].extend({});
+
+});
+define('harvestman/post/show/template', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 6,
+            "column": 0
+          }
+        },
+        "moduleName": "harvestman/post/show/template.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(1);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0, 1]),1,1);
+        return morphs;
+      },
+      statements: [
+        ["inline","hm-post-display",[],["post",["subexpr","@mut",[["get","model.post",["loc",[null,[3,27],[3,37]]]]],[],[]]],["loc",[null,[3,4],[3,39]]]]
+      ],
+      locals: [],
+      templates: []
+    };
+  }()));
+
+});
+define('harvestman/post/template', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.HTMLBars.template((function() {
+    var child0 = (function() {
+      return {
+        meta: {
+          "revision": "Ember@1.13.7",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 3,
+              "column": 2
+            },
+            "end": {
+              "line": 5,
+              "column": 2
+            }
+          },
+          "moduleName": "harvestman/post/template.hbs"
+        },
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("    New Post\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes() { return []; },
+        statements: [
+
+        ],
+        locals: [],
+        templates: []
+      };
+    }());
+    var child1 = (function() {
+      return {
+        meta: {
+          "revision": "Ember@1.13.7",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 15,
+              "column": 0
+            }
+          },
+          "moduleName": "harvestman/post/template.hbs"
+        },
+        arity: 1,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("  ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("div");
+          dom.setAttribute(el1,"class","row");
+          var el2 = dom.createTextNode("\n    ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("div");
+          dom.setAttribute(el2,"class","col s12");
+          var el3 = dom.createTextNode("\n      ");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createComment("");
+          dom.appendChild(el2, el3);
+          var el3 = dom.createTextNode("\n    ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n  ");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1, 1]),1,1);
+          return morphs;
+        },
+        statements: [
+          ["inline","hm-post-display",[],["post",["subexpr","@mut",[["get","post",["loc",[null,[12,29],[12,33]]]]],[],[]]],["loc",[null,[12,6],[12,35]]]]
+        ],
+        locals: ["post"],
+        templates: []
+      };
+    }());
+    return {
+      meta: {
+        "revision": "Ember@1.13.7",
+        "loc": {
+          "source": null,
+          "start": {
+            "line": 1,
+            "column": 0
+          },
+          "end": {
+            "line": 16,
+            "column": 0
+          }
+        },
+        "moduleName": "harvestman/post/template.hbs"
+      },
+      arity: 0,
+      cachedFragment: null,
+      hasRendered: false,
+      buildFragment: function buildFragment(dom) {
+        var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createComment("");
+        dom.appendChild(el0, el1);
+        return el0;
+      },
+      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+        var morphs = new Array(2);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0, 1]),1,1);
+        morphs[1] = dom.createMorphAt(fragment,2,2,contextualElement);
+        dom.insertBoundary(fragment, null);
+        return morphs;
+      },
+      statements: [
+        ["block","link-to",["post.new"],[],0,null,["loc",[null,[3,2],[5,14]]]],
+        ["block","each",[["get","model.posts",["loc",[null,[9,8],[9,19]]]]],[],1,null,["loc",[null,[9,0],[15,9]]]]
+      ],
+      locals: [],
+      templates: [child0, child1]
+    };
+  }()));
+
+});
 define('harvestman/product/adapter', ['exports', 'harvestman/application/adapter'], function (exports, ApplicationAdapter) {
 
   'use strict';
@@ -4043,6 +4793,11 @@ define('harvestman/router', ['exports', 'ember', 'harvestman/config/environment'
     this.resource('firmware', { path: '/pages/firmware' }, function () {});
     this.resource('systems', { path: '/systems' }, function () {});
     this.route('login');
+
+    this.resource('post', { path: '/posts' });
+    this.route('post.new', { path: '/posts/new' });
+    this.route('post.edit', { path: '/posts/:post_id/edit' });
+    this.route('post.show', { path: '/posts/:post_id' });
   });
 
   exports['default'] = Router;
@@ -5261,6 +6016,26 @@ define('harvestman/tests/components/hm-page-form/component.jshint', function () 
   });
 
 });
+define('harvestman/tests/components/hm-post-display/component.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - components/hm-post-display');
+  QUnit.test('components/hm-post-display/component.js should pass jshint', function(assert) { 
+    assert.ok(true, 'components/hm-post-display/component.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/components/hm-post-form/component.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - components/hm-post-form');
+  QUnit.test('components/hm-post-form/component.js should pass jshint', function(assert) { 
+    assert.ok(true, 'components/hm-post-form/component.js should pass jshint.'); 
+  });
+
+});
 define('harvestman/tests/components/hm-product-display/component.jshint', function () {
 
   'use strict';
@@ -5769,6 +6544,292 @@ define('harvestman/tests/integration/components/hm-page-form/component-test.jshi
   });
 
 });
+define('harvestman/tests/integration/components/hm-post-display/component-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForComponent('hm-post-display', 'Integration | Component | hm post display', {
+    integration: true
+  });
+
+  ember_qunit.test('it renders', function (assert) {
+    assert.expect(2);
+
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'revision': 'Ember@1.13.7',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 19
+            }
+          }
+        },
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['content', 'hm-post-display', ['loc', [null, [1, 0], [1, 19]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:
+    this.render(Ember.HTMLBars.template((function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            'revision': 'Ember@1.13.7',
+            'loc': {
+              'source': null,
+              'start': {
+                'line': 2,
+                'column': 4
+              },
+              'end': {
+                'line': 4,
+                'column': 4
+              }
+            }
+          },
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode('      template block text\n');
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+
+      return {
+        meta: {
+          'revision': 'Ember@1.13.7',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 5,
+              'column': 2
+            }
+          }
+        },
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode('\n');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode('  ');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [['block', 'hm-post-display', [], [], 0, null, ['loc', [null, [2, 4], [4, 24]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), 'template block text');
+  });
+
+});
+define('harvestman/tests/integration/components/hm-post-display/component-test.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/hm-post-display');
+  QUnit.test('integration/components/hm-post-display/component-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'integration/components/hm-post-display/component-test.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/integration/components/hm-post-form/component-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForComponent('hm-post-form', 'Integration | Component | hm post form', {
+    integration: true
+  });
+
+  ember_qunit.test('it renders', function (assert) {
+    assert.expect(2);
+
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.on('myAction', function(val) { ... });
+
+    this.render(Ember.HTMLBars.template((function () {
+      return {
+        meta: {
+          'revision': 'Ember@1.13.7',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 1,
+              'column': 16
+            }
+          }
+        },
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
+          dom.insertBoundary(fragment, 0);
+          dom.insertBoundary(fragment, null);
+          return morphs;
+        },
+        statements: [['content', 'hm-post-form', ['loc', [null, [1, 0], [1, 16]]]]],
+        locals: [],
+        templates: []
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:
+    this.render(Ember.HTMLBars.template((function () {
+      var child0 = (function () {
+        return {
+          meta: {
+            'revision': 'Ember@1.13.7',
+            'loc': {
+              'source': null,
+              'start': {
+                'line': 2,
+                'column': 4
+              },
+              'end': {
+                'line': 4,
+                'column': 4
+              }
+            }
+          },
+          arity: 0,
+          cachedFragment: null,
+          hasRendered: false,
+          buildFragment: function buildFragment(dom) {
+            var el0 = dom.createDocumentFragment();
+            var el1 = dom.createTextNode('      template block text\n');
+            dom.appendChild(el0, el1);
+            return el0;
+          },
+          buildRenderNodes: function buildRenderNodes() {
+            return [];
+          },
+          statements: [],
+          locals: [],
+          templates: []
+        };
+      })();
+
+      return {
+        meta: {
+          'revision': 'Ember@1.13.7',
+          'loc': {
+            'source': null,
+            'start': {
+              'line': 1,
+              'column': 0
+            },
+            'end': {
+              'line': 5,
+              'column': 2
+            }
+          }
+        },
+        arity: 0,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode('\n');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment('');
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode('  ');
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
+          return morphs;
+        },
+        statements: [['block', 'hm-post-form', [], [], 0, null, ['loc', [null, [2, 4], [4, 21]]]]],
+        locals: [],
+        templates: [child0]
+      };
+    })()));
+
+    assert.equal(this.$().text().trim(), 'template block text');
+  });
+
+});
+define('harvestman/tests/integration/components/hm-post-form/component-test.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - integration/components/hm-post-form');
+  QUnit.test('integration/components/hm-post-form/component-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'integration/components/hm-post-form/component-test.js should pass jshint.'); 
+  });
+
+});
 define('harvestman/tests/integration/components/hm-product-display/component-test', ['ember-qunit'], function (ember_qunit) {
 
   'use strict';
@@ -6213,6 +7274,96 @@ define('harvestman/tests/page/show/route.jshint', function () {
   });
 
 });
+define('harvestman/tests/post/adapter.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post');
+  QUnit.test('post/adapter.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/adapter.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/post/base/route.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post/base');
+  QUnit.test('post/base/route.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/base/route.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/post/edit/route.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post/edit');
+  QUnit.test('post/edit/route.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/edit/route.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/post/image/model.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post/image');
+  QUnit.test('post/image/model.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/image/model.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/post/model.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post');
+  QUnit.test('post/model.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/model.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/post/new/route.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post/new');
+  QUnit.test('post/new/route.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/new/route.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/post/route.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post');
+  QUnit.test('post/route.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/route.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/post/serializer.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post');
+  QUnit.test('post/serializer.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/serializer.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/post/show/route.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - post/show');
+  QUnit.test('post/show/route.js should pass jshint', function(assert) { 
+    assert.ok(true, 'post/show/route.js should pass jshint.'); 
+  });
+
+});
 define('harvestman/tests/product/adapter.jshint', function () {
 
   'use strict';
@@ -6445,6 +7596,57 @@ define('harvestman/tests/unit/page/route-test.jshint', function () {
   QUnit.module('JSHint - unit/page');
   QUnit.test('unit/page/route-test.js should pass jshint', function(assert) { 
     assert.ok(true, 'unit/page/route-test.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/unit/post/model-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForModel('post', 'Unit | Model | post', {
+    // Specify the other units that are required for this test.
+    needs: []
+  });
+
+  ember_qunit.test('it exists', function (assert) {
+    var model = this.subject();
+    // var store = this.store();
+    assert.ok(!!model);
+  });
+
+});
+define('harvestman/tests/unit/post/model-test.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - unit/post');
+  QUnit.test('unit/post/model-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'unit/post/model-test.js should pass jshint.'); 
+  });
+
+});
+define('harvestman/tests/unit/post/route-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor('route:post', 'Unit | Route | post', {
+    // Specify the other units that are required for this test.
+    // needs: ['controller:foo']
+  });
+
+  ember_qunit.test('it exists', function (assert) {
+    var route = this.subject();
+    assert.ok(route);
+  });
+
+});
+define('harvestman/tests/unit/post/route-test.jshint', function () {
+
+  'use strict';
+
+  QUnit.module('JSHint - unit/post');
+  QUnit.test('unit/post/route-test.js should pass jshint', function(assert) { 
+    assert.ok(true, 'unit/post/route-test.js should pass jshint.'); 
   });
 
 });
@@ -6707,7 +7909,7 @@ catch(err) {
 if (runningTests) {
   require("harvestman/tests/test-helper");
 } else {
-  require("harvestman/app")["default"].create({"name":"harvestman","version":"0.0.0+76189235"});
+  require("harvestman/app")["default"].create({"name":"harvestman","version":"0.0.0+eff46292"});
 }
 
 /* jshint ignore:end */

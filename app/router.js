@@ -25,6 +25,11 @@ Router.map(function() {
   this.resource('firmware', { path: '/pages/firmware' }, function() {});
   this.resource('systems', { path: '/systems' }, function() {});
   this.route('login');
+
+  this.resource('post', { path: '/posts' });
+  this.route('post.new', { path: '/posts/new' });
+  this.route('post.edit', { path: '/posts/:post_id/edit' });
+  this.route('post.show', { path: '/posts/:post_id' });
 });
 
 export default Router;

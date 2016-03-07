@@ -1,0 +1,38 @@
+<form id="post-form">
+  {{hm-images images=post.images}}
+
+  <div class="row">
+    <div class="col s12">
+      {{hm-file-uploader store=store model=post objectId=post.id objectType='posts'}}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      {{input type="text" id="post-title" value=post.title}}
+      <label class="active" for="post-title">Title</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      {{input type="text" id="post-permalink" value=post.permalink}}
+      <label class="active" for="post-permalink">permalink</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      {{textarea id="post-content" class="materialize-textarea" value=post-content}}
+      <label class="active" for="post-content">Content</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s12">
+      <button class="btn" type="submit" id="save-button" {{action 'save'}}>
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
