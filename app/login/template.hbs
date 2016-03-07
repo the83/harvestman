@@ -1,15 +1,21 @@
 <form {{action "authenticate" on="submit"}}>
-  <div>
-    <label for="identification">E-mail</label><br />
-    {{input value=model.identification placeholder="E-mail" type="text" name="email"}}
+  <div class="row">
+    <div class="col s12">
+      <label for="identification">E-mail</label><br />
+      {{input value=model.identification placeholder="E-mail" type="text" name="email"}}
+    </div>
   </div>
 
-  <div>
-    <label for="password">Password</label><br />
-    {{input value=model.password placeholder="Password" type="password" name="password"}}
+  <div class="row">
+    <div class="col s12">
+      <label for="password">Password</label><br />
+      {{input value=model.password placeholder="Password" type="password" name="password"}}
+    </div>
   </div>
 
-  <div>
-    <button type="submit">Log in</button>
+  <div class="row">
+    <div class="col s12">
+      <button type="submit">Log in</button>
+    </div>
   </div>
 </form>

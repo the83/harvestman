@@ -12,7 +12,8 @@ export default Ember.Component.extend({
     // for some reason reinitializing the slider doesn't GC the indicators
     Ember.$('.indicators').remove();
     slider.slider({
-      height: 300
+      height: 300,
+      indicators: false
     });
   }
 });

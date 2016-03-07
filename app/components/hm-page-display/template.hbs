@@ -1,15 +1,17 @@
-<row>
-  <h5>{{page.title}}</h5>
-</row>
+<div class="row">
+  <div class="col s12">
+    <h5>{{page.title}}</h5>
+  </div>
+</div>
 
-<row>
-  {{#link-to 'page.edit' page.id class="btn-flat edit-button"}}Edit{{/link-to}}
-</row>
+<div class="row">
+  <div class="col s12">
+    {{#link-to 'page.edit' page.id}}Edit{{/link-to}}
+  </div>
+</div>
 
-<row>
+<div class="row">
   <div id="page-content" class="col s12">
     {{{page.content}}}
   </div>
-</row>
-
-
+</div>

@@ -2,48 +2,116 @@
 @import 'ember-cli-materialize';
 @import 'components/color';
 
+$color-harvestman-orange: #FC0;
 $primary-color: color("grey", "lighten-3");
-$secondary-color: color("orange", "darken-4");
-$tabs-underline-color: color("orange", "darken-4");
-$tabs-text-color: color("orange", "darken-4");
-$tabs-bg-color: color("grey", "lighten-3");
+$color-dark-grey: color("grey", "darken-4");
+$color-medium-grey: color("grey", "darken-2");
+$color-light-grey: color("grey", "lighten-2");
+
+$secondary-color: $color-harvestman-orange;
+$tabs-underline-color: $color-light-grey;
+$tabs-text-color: $color-medium-grey;
+$tabs-bg-color: $color-dark-grey;
 $footer-bg-color: color("grey", "darken-4");
 
 @import 'components/variables';
 @import 'materialize';
 @import 'ember-cli-materialize';
 
+h1, h2, h3, h4, h5, .tab {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: color("grey", "lighten-2");
+  background-color: $color-light-grey;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 main {
   flex: 1 0 auto;
+  padding-left: 240px;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
-.main-container {
-  background-color: white;
-  padding-right: 20px;
-  padding-left: 20px;
-  min-height: 600px;
+@media only screen and (max-width : 992px) {
+  main {
+    padding-left: 0;
+  }
 }
+
+header {
+  font-family: Helvetica, Arial, sans-serif;
+  background-color: black;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: $color-medium-grey;
+
+  ul {
+    background-color: black;
+  }
+
+  .side-nav {
+    background-color: black;
+    li {
+      padding: 0;
+      background-color: black;
+      &:hover {
+        background-color: $color-light-grey;
+      }
+    }
+    .logo {
+      padding: 0px;
+      height: 170px;
+      img {
+        width: 220px;
+      }
+      &:hover {
+        background-color: black;
+      }
+      a.active {
+        background-color: black !important;
+      }
+    }
+  }
+
+  .active {
+    background-color: $color-light-grey;
+    color: black;
+    padding: 0;
+  }
+}
+
 
 /* label color */
-.input-field label {
-  color: #000;
+label {
+  color: $color-dark-grey !important;
 }
 /* label focus color */
 .input-field input[type=text]:focus + label {
-  color: color("orange", "darken-4");
+  color: $color-dark-grey;
 }
+
+.input-field textarea:focus + label {
+  color: $color-dark-grey;
+}
+
 /* label underline focus color */
 .input-field input[type=text]:focus {
-  border-bottom: 1px solid color("orange", "darken-4");
-  box-shadow: 0 1px 0 0 color("orange", "darken-4");
+  border-bottom: 1px solid $color-harvestman-orange;
+  box-shadow: 0 1px 0 0 $color-harvestman-orange;
 }
+
+textarea:focus {
+  border-bottom: 1px solid $color-harvestman-orange !important;
+  -webkit-box-shadow: 0 1px 0 0 $color-harvestman-orange !important;
+  -moz-box-shadow: 0 1px 0 0 $color-harvestman-orange !important;
+  box-shadow: 0 1px 0 0 $color-harvestman-orange !important;
+}
+
 /* valid color */
 .input-field input[type=text].valid {
   border-bottom: 1px solid #000;
@@ -78,6 +146,11 @@ main {
   padding-left: 0px;
 }
 
+.btn {
+  background-color: $color-dark-grey;
+  color: $color-light-grey;
+}
+
 .edit-button {
   padding-left: 0px;
 }
@@ -87,25 +160,22 @@ main {
   color: white;
 }
 
-.logo-header {
-  background-color: color("grey", "darken-4");
-  .container {
-    background-color: color("grey", "darken-4");
-  }
-}
-
-.main-logo {
-  font-weight: bold;
-  font-size: 2em;
-  color: color("orange", "darken-4");
-  width: 100%;
+.slider {
+  background-color: $color-dark-grey;
 }
 
 .product-image {
-  padding-bottom: 20px;
-  background-color: color("grey", "lighten-3");
+  background-color: $color-light-grey;
+
   .active {
-    background-color: color("grey", "darken-4") !important;
+    background-color: $color-medium-grey !important;
+  }
+
+  .slides {
+    .active {
+      padding: 20px 0px;
+      background-color: $color-medium-grey !important;
+    }
   }
   img {
     background-size: contain !important;
@@ -114,29 +184,20 @@ main {
 }
 
 .model-number {
-  color: color("orange", "darken-4");
+  color: $color-dark-grey;
+  font-weight: bold;
   text-align: right;
-  padding-right: 0px !important;
   text-transform: uppercase;
 }
 
 .product-name {
-  color: color("orange", "darken-4");
+  color: $color-dark-grey;
+  font-weight: bold;
   text-transform: uppercase;
-  padding-left: 0px !important;
 }
 
-nav {
-  line-height: 2em;
-  height: 2em;
-  @extend .z-depth-0;
-}
-
-.nav-wrapper {
-  background-color: $primary-color;
-  a {
-    color: color("grey", "darken-4");
-  }
+#description {
+  background-color: $color-light-grey;
 }
 
 .clickable {
@@ -145,7 +206,8 @@ nav {
 
 .product-tile {
   .card-image {
-    background-color: color("grey", "darken-4");
+    padding: 10px;
+    background-color: $color-dark-grey;
     img {
       max-height: 250px;
       width: auto;
@@ -153,19 +215,20 @@ nav {
     }
   }
   .card-content {
-    background-color: color("grey", "lighten-3");
-    font-size: 0.7em;
+    background-color: $color-medium-grey;
+    font-size: 0.8em;
     padding: 5px;
-    a {
-      color: color("gray", "darken-4");
+    p {
+      color: $color-light-grey;
     }
     .title {
       font-weight: bold;
       text-transform: uppercase;
-      color: color("orange", "darken-4");
+      color: $color-harvestman-orange;
     }
   }
 }
+
 
 .show-newlines {
   p {

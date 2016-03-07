@@ -12,10 +12,10 @@ Router.map(function() {
   this.route('product.edit', { path: '/products/:product_id/edit'});
   this.route('product.show', { path: '/products/:product_id'});
 
+  this.route('page.show', { path: '/pages/:page_id' });
+  this.route('page.edit', { path: '/pages/:page_id/edit' });
   this.resource('page', { path: '/pages'}, function() {
     this.route('new');
-    this.route('edit', { path: ':page_id/edit' });
-    this.route('show', { path: ':page_id' });
   });
 
   this.resource('home', { path: '/' }, function() {});

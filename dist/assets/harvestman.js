@@ -341,7 +341,7 @@ define('harvestman/components/hm-images/template', ['exports'], function (export
           var el1 = dom.createTextNode("    ");
           dom.appendChild(el0, el1);
           var el1 = dom.createElement("div");
-          dom.setAttribute(el1,"class","col s4");
+          dom.setAttribute(el1,"class","col s2");
           var el2 = dom.createTextNode("\n      ");
           dom.appendChild(el1, el2);
           var el2 = dom.createComment("");
@@ -429,12 +429,12 @@ define('harvestman/components/hm-page-display/template', ['exports'], function (
           "loc": {
             "source": null,
             "start": {
-              "line": 6,
-              "column": 2
+              "line": 9,
+              "column": 4
             },
             "end": {
-              "line": 6,
-              "column": 67
+              "line": 9,
+              "column": 40
             }
           },
           "moduleName": "harvestman/components/hm-page-display/template.hbs"
@@ -466,7 +466,7 @@ define('harvestman/components/hm-page-display/template', ['exports'], function (
             "column": 0
           },
           "end": {
-            "line": 16,
+            "line": 18,
             "column": 0
           }
         },
@@ -477,11 +477,19 @@ define('harvestman/components/hm-page-display/template', ['exports'], function (
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("row");
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("h5");
-        var el3 = dom.createComment("");
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h5");
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
@@ -489,17 +497,26 @@ define('harvestman/components/hm-page-display/template', ['exports'], function (
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createElement("row");
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createElement("row");
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
@@ -515,21 +532,21 @@ define('harvestman/components/hm-page-display/template', ['exports'], function (
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n\n");
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(3);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0, 1]),0,0);
-        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2]),1,1);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0, 1, 1]),0,0);
+        morphs[1] = dom.createMorphAt(dom.childAt(fragment, [2, 1]),1,1);
         morphs[2] = dom.createUnsafeMorphAt(dom.childAt(fragment, [4, 1]),1,1);
         return morphs;
       },
       statements: [
-        ["content","page.title",["loc",[null,[2,6],[2,20]]]],
-        ["block","link-to",["page.edit",["get","page.id",["loc",[null,[6,25],[6,32]]]]],["class","btn-flat edit-button"],0,null,["loc",[null,[6,2],[6,79]]]],
-        ["content","page.content",["loc",[null,[11,4],[11,22]]]]
+        ["content","page.title",["loc",[null,[3,8],[3,22]]]],
+        ["block","link-to",["page.edit",["get","page.id",["loc",[null,[9,27],[9,34]]]]],[],0,null,["loc",[null,[9,4],[9,52]]]],
+        ["content","page.content",["loc",[null,[15,4],[15,22]]]]
       ],
       locals: [],
       templates: [child0]
@@ -565,7 +582,7 @@ define('harvestman/components/hm-page-form/template', ['exports'], function (exp
             "column": 0
           },
           "end": {
-            "line": 27,
+            "line": 31,
             "column": 0
           }
         },
@@ -659,11 +676,25 @@ define('harvestman/components/hm-page-form/template', ['exports'], function (exp
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("button");
-        dom.setAttribute(el2,"class","btn orange");
-        dom.setAttribute(el2,"type","submit");
-        dom.setAttribute(el2,"id","save-button");
-        var el3 = dom.createTextNode("\n    Submit\n  ");
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","input-field col s12");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4,"class","btn");
+        dom.setAttribute(el4,"type","submit");
+        dom.setAttribute(el4,"id","save-button");
+        var el5 = dom.createTextNode("\n        Submit\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
@@ -675,7 +706,7 @@ define('harvestman/components/hm-page-form/template', ['exports'], function (exp
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element0 = dom.childAt(fragment, [0]);
-        var element1 = dom.childAt(element0, [7]);
+        var element1 = dom.childAt(element0, [7, 1, 1]);
         var morphs = new Array(4);
         morphs[0] = dom.createMorphAt(dom.childAt(element0, [1, 1]),1,1);
         morphs[1] = dom.createMorphAt(dom.childAt(element0, [3, 1]),1,1);
@@ -687,7 +718,7 @@ define('harvestman/components/hm-page-form/template', ['exports'], function (exp
         ["inline","input",[],["type","text","id","page-permalink","value",["subexpr","@mut",[["get","page.permalink",["loc",[null,[4,52],[4,66]]]]],[],[]]],["loc",[null,[4,6],[4,68]]]],
         ["inline","input",[],["type","text","id","page-title","value",["subexpr","@mut",[["get","page.title",["loc",[null,[11,48],[11,58]]]]],[],[]]],["loc",[null,[11,6],[11,60]]]],
         ["inline","textarea",[],["id","page-content","class","materialize-textarea","value",["subexpr","@mut",[["get","page.content",["loc",[null,[18,70],[18,82]]]]],[],[]]],["loc",[null,[18,6],[18,84]]]],
-        ["element","action",["save"],[],["loc",[null,[23,60],[23,77]]]]
+        ["element","action",["save"],[],["loc",[null,[25,57],[25,74]]]]
       ],
       locals: [],
       templates: []
@@ -720,12 +751,12 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           "loc": {
             "source": null,
             "start": {
-              "line": 11,
-              "column": 2
+              "line": 12,
+              "column": 4
             },
             "end": {
-              "line": 11,
-              "column": 83
+              "line": 12,
+              "column": 85
             }
           },
           "moduleName": "harvestman/components/hm-product-display/template.hbs"
@@ -754,11 +785,11 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           "loc": {
             "source": null,
             "start": {
-              "line": 23,
+              "line": 25,
               "column": 2
             },
             "end": {
-              "line": 29,
+              "line": 31,
               "column": 2
             }
           },
@@ -798,10 +829,10 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           return morphs;
         },
         statements: [
-          ["inline","md-tab",[],["value","description","title","Description"],["loc",[null,[25,4],[25,54]]]],
-          ["inline","md-tab",[],["value","specs","title","Specs"],["loc",[null,[26,4],[26,42]]]],
-          ["inline","md-tab",[],["value","manual","title","Manual"],["loc",[null,[27,4],[27,44]]]],
-          ["inline","md-tab",[],["value","whereToBuy","title","Where to Buy"],["loc",[null,[28,4],[28,54]]]]
+          ["inline","md-tab",[],["value","description","title","Description"],["loc",[null,[27,4],[27,54]]]],
+          ["inline","md-tab",[],["value","specs","title","Specs"],["loc",[null,[28,4],[28,42]]]],
+          ["inline","md-tab",[],["value","manual","title","Manual"],["loc",[null,[29,4],[29,44]]]],
+          ["inline","md-tab",[],["value","whereToBuy","title","Where to Buy"],["loc",[null,[30,4],[30,54]]]]
         ],
         locals: [],
         templates: []
@@ -814,11 +845,11 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           "loc": {
             "source": null,
             "start": {
-              "line": 32,
+              "line": 34,
               "column": 2
             },
             "end": {
-              "line": 36,
+              "line": 38,
               "column": 2
             }
           },
@@ -853,7 +884,7 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           return morphs;
         },
         statements: [
-          ["content","product.description",["loc",[null,[34,9],[34,34]]]]
+          ["content","product.description",["loc",[null,[36,9],[36,34]]]]
         ],
         locals: [],
         templates: []
@@ -866,11 +897,11 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           "loc": {
             "source": null,
             "start": {
-              "line": 37,
+              "line": 39,
               "column": 2
             },
             "end": {
-              "line": 40,
+              "line": 42,
               "column": 2
             }
           },
@@ -908,11 +939,11 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           "loc": {
             "source": null,
             "start": {
-              "line": 41,
+              "line": 43,
               "column": 2
             },
             "end": {
-              "line": 45,
+              "line": 47,
               "column": 2
             }
           },
@@ -947,7 +978,7 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           return morphs;
         },
         statements: [
-          ["content","product.manual",["loc",[null,[43,9],[43,29]]]]
+          ["content","product.manual",["loc",[null,[45,9],[45,29]]]]
         ],
         locals: [],
         templates: []
@@ -960,11 +991,11 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
           "loc": {
             "source": null,
             "start": {
-              "line": 46,
+              "line": 48,
               "column": 2
             },
             "end": {
-              "line": 50,
+              "line": 52,
               "column": 2
             }
           },
@@ -1011,7 +1042,7 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
             "column": 0
           },
           "end": {
-            "line": 52,
+            "line": 54,
             "column": 0
           }
         },
@@ -1059,7 +1090,14 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
         var el1 = dom.createElement("row");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
@@ -1121,7 +1159,7 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
         var morphs = new Array(9);
         morphs[0] = dom.createMorphAt(dom.childAt(element0, [1, 1]),0,0);
         morphs[1] = dom.createMorphAt(dom.childAt(element0, [3, 1]),1,1);
-        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [2]),1,1);
+        morphs[2] = dom.createMorphAt(dom.childAt(fragment, [2, 1]),1,1);
         morphs[3] = dom.createMorphAt(dom.childAt(fragment, [4, 1, 1]),1,1);
         morphs[4] = dom.createMorphAt(dom.childAt(fragment, [6]),1,1);
         morphs[5] = dom.createMorphAt(element1,1,1);
@@ -1133,13 +1171,13 @@ define('harvestman/components/hm-product-display/template', ['exports'], functio
       statements: [
         ["content","product.name",["loc",[null,[3,8],[3,24]]]],
         ["content","product.modelNumber",["loc",[null,[6,14],[6,37]]]],
-        ["block","link-to",["product.edit",["get","product.id",["loc",[null,[11,28],[11,38]]]]],["id","edit-product-btn","class","btn-flat"],0,null,["loc",[null,[11,2],[11,95]]]],
-        ["inline","hm-slideshow",[],["images",["subexpr","@mut",[["get","product.images",["loc",[null,[17,28],[17,42]]]]],[],[]]],["loc",[null,[17,6],[17,44]]]],
-        ["block","md-tabs",[],["selected",["subexpr","@mut",[["get","selectedTab",["loc",[null,[24,13],[24,24]]]]],[],[]]],1,null,["loc",[null,[23,2],[29,14]]]],
-        ["block","if",[["get","showDescription",["loc",[null,[32,8],[32,23]]]]],[],2,null,["loc",[null,[32,2],[36,9]]]],
-        ["block","if",[["get","showSpecs",["loc",[null,[37,8],[37,17]]]]],[],3,null,["loc",[null,[37,2],[40,9]]]],
-        ["block","if",[["get","showManual",["loc",[null,[41,8],[41,18]]]]],[],4,null,["loc",[null,[41,2],[45,9]]]],
-        ["block","if",[["get","showWhereToBuy",["loc",[null,[46,8],[46,22]]]]],[],5,null,["loc",[null,[46,2],[50,9]]]]
+        ["block","link-to",["product.edit",["get","product.id",["loc",[null,[12,30],[12,40]]]]],["id","edit-product-btn","class","btn-flat"],0,null,["loc",[null,[12,4],[12,97]]]],
+        ["inline","hm-slideshow",[],["images",["subexpr","@mut",[["get","product.images",["loc",[null,[19,28],[19,42]]]]],[],[]]],["loc",[null,[19,6],[19,44]]]],
+        ["block","md-tabs",[],["selected",["subexpr","@mut",[["get","selectedTab",["loc",[null,[26,13],[26,24]]]]],[],[]]],1,null,["loc",[null,[25,2],[31,14]]]],
+        ["block","if",[["get","showDescription",["loc",[null,[34,8],[34,23]]]]],[],2,null,["loc",[null,[34,2],[38,9]]]],
+        ["block","if",[["get","showSpecs",["loc",[null,[39,8],[39,17]]]]],[],3,null,["loc",[null,[39,2],[42,9]]]],
+        ["block","if",[["get","showManual",["loc",[null,[43,8],[43,18]]]]],[],4,null,["loc",[null,[43,2],[47,9]]]],
+        ["block","if",[["get","showWhereToBuy",["loc",[null,[48,8],[48,22]]]]],[],5,null,["loc",[null,[48,2],[52,9]]]]
       ],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5]
@@ -1175,7 +1213,7 @@ define('harvestman/components/hm-product-form/template', ['exports'], function (
             "column": 0
           },
           "end": {
-            "line": 47,
+            "line": 51,
             "column": 0
           }
         },
@@ -1335,11 +1373,25 @@ define('harvestman/components/hm-product-form/template', ['exports'], function (
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("button");
-        dom.setAttribute(el2,"class","btn orange");
-        dom.setAttribute(el2,"type","submit");
-        dom.setAttribute(el2,"id","save-button");
-        var el3 = dom.createTextNode("\n    Submit\n  ");
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","input-field col s12");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4,"class","btn");
+        dom.setAttribute(el4,"type","submit");
+        dom.setAttribute(el4,"id","save-button");
+        var el5 = dom.createTextNode("\n        Submit\n      ");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
@@ -1352,7 +1404,7 @@ define('harvestman/components/hm-product-form/template', ['exports'], function (
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var element0 = dom.childAt(fragment, [0]);
         var element1 = dom.childAt(element0, [5]);
-        var element2 = dom.childAt(element0, [13]);
+        var element2 = dom.childAt(element0, [13, 1, 1]);
         var morphs = new Array(8);
         morphs[0] = dom.createMorphAt(element0,1,1);
         morphs[1] = dom.createMorphAt(dom.childAt(element0, [3, 1]),1,1);
@@ -1372,7 +1424,7 @@ define('harvestman/components/hm-product-form/template', ['exports'], function (
         ["inline","input",[],["type","text","id","product-brief-description","value",["subexpr","@mut",[["get","product.briefDescription",["loc",[null,[24,63],[24,87]]]]],[],[]]],["loc",[null,[24,6],[24,89]]]],
         ["inline","textarea",[],["id","product-description","class","materialize-textarea","value",["subexpr","@mut",[["get","product.description",["loc",[null,[31,77],[31,96]]]]],[],[]]],["loc",[null,[31,6],[31,98]]]],
         ["inline","textarea",[],["id","product-manual","class","materialize-textarea","value",["subexpr","@mut",[["get","product.manual",["loc",[null,[38,72],[38,86]]]]],[],[]]],["loc",[null,[38,6],[38,88]]]],
-        ["element","action",["save"],[],["loc",[null,[43,60],[43,77]]]]
+        ["element","action",["save"],[],["loc",[null,[45,57],[45,74]]]]
       ],
       locals: [],
       templates: []
@@ -1533,11 +1585,11 @@ define('harvestman/components/hm-product-tiles/template', ['exports'], function 
           "loc": {
             "source": null,
             "start": {
-              "line": 3,
+              "line": 8,
               "column": 2
             },
             "end": {
-              "line": 7,
+              "line": 12,
               "column": 2
             }
           },
@@ -1569,7 +1621,7 @@ define('harvestman/components/hm-product-tiles/template', ['exports'], function 
           return morphs;
         },
         statements: [
-          ["inline","hm-product-tile",[],["product",["subexpr","@mut",[["get","product",["loc",[null,[5,32],[5,39]]]]],[],[]]],["loc",[null,[5,6],[5,41]]]]
+          ["inline","hm-product-tile",[],["product",["subexpr","@mut",[["get","product",["loc",[null,[10,32],[10,39]]]]],[],[]]],["loc",[null,[10,6],[10,41]]]]
         ],
         locals: ["product"],
         templates: []
@@ -1585,7 +1637,7 @@ define('harvestman/components/hm-product-tiles/template', ['exports'], function 
             "column": 0
           },
           "end": {
-            "line": 9,
+            "line": 14,
             "column": 0
           }
         },
@@ -1599,10 +1651,23 @@ define('harvestman/components/hm-product-tiles/template', ['exports'], function 
         var el1 = dom.createElement("row");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("h5");
-        var el3 = dom.createTextNode("Products");
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h5");
+        var el4 = dom.createTextNode("Products");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("row");
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         var el2 = dom.createComment("");
@@ -1614,11 +1679,11 @@ define('harvestman/components/hm-product-tiles/template', ['exports'], function 
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]),3,3);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [2]),1,1);
         return morphs;
       },
       statements: [
-        ["block","each",[["get","products",["loc",[null,[3,10],[3,18]]]]],[],0,null,["loc",[null,[3,2],[7,11]]]]
+        ["block","each",[["get","products",["loc",[null,[8,10],[8,18]]]]],[],0,null,["loc",[null,[8,2],[12,11]]]]
       ],
       locals: [],
       templates: [child0]
@@ -1644,7 +1709,8 @@ define('harvestman/components/hm-slideshow/component', ['exports', 'ember'], fun
       // for some reason reinitializing the slider doesn't GC the indicators
       Ember['default'].$('.indicators').remove();
       slider.slider({
-        height: 300
+        height: 300,
+        indicators: false
       });
     }
   });
@@ -2994,7 +3060,7 @@ define('harvestman/login/template', ['exports'], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 16,
+            "line": 22,
             "column": 0
           }
         },
@@ -3009,18 +3075,26 @@ define('harvestman/login/template', ['exports'], function (exports) {
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("label");
-        dom.setAttribute(el3,"for","identification");
-        var el4 = dom.createTextNode("E-mail");
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","col s12");
+        var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("br");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n    ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
+        var el4 = dom.createElement("label");
+        dom.setAttribute(el4,"for","identification");
+        var el5 = dom.createTextNode("E-mail");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
@@ -3028,18 +3102,26 @@ define('harvestman/login/template', ['exports'], function (exports) {
         var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("label");
-        dom.setAttribute(el3,"for","password");
-        var el4 = dom.createTextNode("Password");
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","col s12");
+        var el4 = dom.createTextNode("\n      ");
         dom.appendChild(el3, el4);
-        dom.appendChild(el2, el3);
-        var el3 = dom.createElement("br");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n    ");
-        dom.appendChild(el2, el3);
-        var el3 = dom.createComment("");
+        var el4 = dom.createElement("label");
+        dom.setAttribute(el4,"for","password");
+        var el5 = dom.createTextNode("Password");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("br");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
@@ -3047,11 +3129,19 @@ define('harvestman/login/template', ['exports'], function (exports) {
         var el2 = dom.createTextNode("\n\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","row");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("button");
-        dom.setAttribute(el3,"type","submit");
-        var el4 = dom.createTextNode("Log in");
+        var el3 = dom.createElement("div");
+        dom.setAttribute(el3,"class","col s12");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("button");
+        dom.setAttribute(el4,"type","submit");
+        var el5 = dom.createTextNode("Log in");
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
@@ -3068,14 +3158,14 @@ define('harvestman/login/template', ['exports'], function (exports) {
         var element0 = dom.childAt(fragment, [0]);
         var morphs = new Array(3);
         morphs[0] = dom.createElementMorph(element0);
-        morphs[1] = dom.createMorphAt(dom.childAt(element0, [1]),4,4);
-        morphs[2] = dom.createMorphAt(dom.childAt(element0, [3]),4,4);
+        morphs[1] = dom.createMorphAt(dom.childAt(element0, [1, 1]),4,4);
+        morphs[2] = dom.createMorphAt(dom.childAt(element0, [3, 1]),4,4);
         return morphs;
       },
       statements: [
         ["element","action",["authenticate"],["on","submit"],["loc",[null,[1,6],[1,43]]]],
-        ["inline","input",[],["value",["subexpr","@mut",[["get","model.identification",["loc",[null,[4,18],[4,38]]]]],[],[]],"placeholder","E-mail","type","text","name","email"],["loc",[null,[4,4],[4,86]]]],
-        ["inline","input",[],["value",["subexpr","@mut",[["get","model.password",["loc",[null,[9,18],[9,32]]]]],[],[]],"placeholder","Password","type","password","name","password"],["loc",[null,[9,4],[9,89]]]]
+        ["inline","input",[],["value",["subexpr","@mut",[["get","model.identification",["loc",[null,[5,20],[5,40]]]]],[],[]],"placeholder","E-mail","type","text","name","email"],["loc",[null,[5,6],[5,88]]]],
+        ["inline","input",[],["value",["subexpr","@mut",[["get","model.password",["loc",[null,[12,20],[12,34]]]]],[],[]],"placeholder","Password","type","password","name","password"],["loc",[null,[12,6],[12,91]]]]
       ],
       locals: [],
       templates: []
@@ -3220,7 +3310,7 @@ define('harvestman/page/new/template', ['exports'], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 3,
+            "line": 7,
             "column": 0
           }
         },
@@ -3231,8 +3321,22 @@ define('harvestman/page/new/template', ['exports'], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("h5");
-        var el2 = dom.createTextNode("Create New Page");
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("h5");
+        var el4 = dom.createTextNode("Create New Page");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -3249,7 +3353,7 @@ define('harvestman/page/new/template', ['exports'], function (exports) {
         return morphs;
       },
       statements: [
-        ["inline","hm-page-form",[],["page",["subexpr","@mut",[["get","model.page",["loc",[null,[2,20],[2,30]]]]],[],[]],"action","save"],["loc",[null,[2,0],[2,46]]]]
+        ["inline","hm-page-form",[],["page",["subexpr","@mut",[["get","model.page",["loc",[null,[6,20],[6,30]]]]],[],[]],"action","save"],["loc",[null,[6,0],[6,46]]]]
       ],
       locals: [],
       templates: []
@@ -3424,7 +3528,7 @@ define('harvestman/page/template', ['exports'], function (exports) {
             },
             "end": {
               "line": 10,
-              "column": 103
+              "column": 57
             }
           },
           "moduleName": "harvestman/page/template.hbs"
@@ -3434,7 +3538,7 @@ define('harvestman/page/template', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("Add New Product");
+          var el1 = dom.createTextNode("Add New Page");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -3521,7 +3625,7 @@ define('harvestman/page/template', ['exports'], function (exports) {
       },
       statements: [
         ["block","each",[["get","model.pages",["loc",[null,[4,14],[4,25]]]]],[],0,null,["loc",[null,[4,6],[8,15]]]],
-        ["block","link-to",["page.new"],["id","new-page-btn","class","waves-effect waves-orange btn-flat"],1,null,["loc",[null,[10,4],[10,115]]]],
+        ["block","link-to",["page.new"],["id","new-page-btn"],1,null,["loc",[null,[10,4],[10,69]]]],
         ["content","outlet",["loc",[null,[13,4],[13,14]]]]
       ],
       locals: [],
@@ -3596,7 +3700,7 @@ define('harvestman/product/edit/template', ['exports'], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 7,
+            "line": 11,
             "column": 0
           }
         },
@@ -3619,6 +3723,20 @@ define('harvestman/product/edit/template', ['exports'], function (exports) {
         var el4 = dom.createTextNode("Edit Product");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","row");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","col s12");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
         var el3 = dom.createComment("");
@@ -3635,11 +3753,11 @@ define('harvestman/product/edit/template', ['exports'], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0, 1]),3,3);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [2, 1]),1,1);
         return morphs;
       },
       statements: [
-        ["inline","hm-product-form",[],["store",["subexpr","@mut",[["get","model.store",["loc",[null,[4,28],[4,39]]]]],[],[]],"product",["subexpr","@mut",[["get","model.product",["loc",[null,[4,48],[4,61]]]]],[],[]],"action","save"],["loc",[null,[4,4],[4,77]]]]
+        ["inline","hm-product-form",[],["store",["subexpr","@mut",[["get","model.store",["loc",[null,[8,28],[8,39]]]]],[],[]],"product",["subexpr","@mut",[["get","model.product",["loc",[null,[8,48],[8,61]]]]],[],[]],"action","save"],["loc",[null,[8,4],[8,77]]]]
       ],
       locals: [],
       templates: []
@@ -3912,10 +4030,10 @@ define('harvestman/router', ['exports', 'ember', 'harvestman/config/environment'
     this.route('product.edit', { path: '/products/:product_id/edit' });
     this.route('product.show', { path: '/products/:product_id' });
 
+    this.route('page.show', { path: '/pages/:page_id' });
+    this.route('page.edit', { path: '/pages/:page_id/edit' });
     this.resource('page', { path: '/pages' }, function () {
       this.route('new');
-      this.route('edit', { path: ':page_id/edit' });
-      this.route('show', { path: ':page_id' });
     });
 
     this.resource('home', { path: '/' }, function () {});
@@ -3979,12 +4097,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 10,
-              "column": 12
+              "line": 4,
+              "column": 6
             },
             "end": {
-              "line": 10,
-              "column": 35
+              "line": 6,
+              "column": 6
             }
           },
           "moduleName": "harvestman/templates/application.hbs"
@@ -3994,7 +4112,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("Home");
+          var el1 = dom.createTextNode("        ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("img");
+          dom.setAttribute(el1,"src","assets/images/logo.png");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -4013,12 +4136,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 13,
-              "column": 8
+              "line": 8,
+              "column": 4
             },
             "end": {
-              "line": 15,
-              "column": 8
+              "line": 10,
+              "column": 4
             }
           },
           "moduleName": "harvestman/templates/application.hbs"
@@ -4028,7 +4151,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("          ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
@@ -4042,7 +4165,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           return morphs;
         },
         statements: [
-          ["inline","link-to",["About","about"],[],["loc",[null,[14,10],[14,37]]]]
+          ["inline","link-to",["about","about"],[],["loc",[null,[9,6],[9,33]]]]
         ],
         locals: [],
         templates: []
@@ -4055,12 +4178,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 16,
-              "column": 8
+              "line": 11,
+              "column": 4
             },
             "end": {
-              "line": 18,
-              "column": 8
+              "line": 13,
+              "column": 4
             }
           },
           "moduleName": "harvestman/templates/application.hbs"
@@ -4070,7 +4193,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("          ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
@@ -4084,7 +4207,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           return morphs;
         },
         statements: [
-          ["inline","link-to",["Products","product"],[],["loc",[null,[17,10],[17,42]]]]
+          ["inline","link-to",["Products","product"],[],["loc",[null,[12,6],[12,38]]]]
         ],
         locals: [],
         templates: []
@@ -4097,12 +4220,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 19,
-              "column": 8
+              "line": 14,
+              "column": 4
             },
             "end": {
-              "line": 21,
-              "column": 8
+              "line": 16,
+              "column": 4
             }
           },
           "moduleName": "harvestman/templates/application.hbs"
@@ -4112,7 +4235,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("          ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
@@ -4126,7 +4249,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           return morphs;
         },
         statements: [
-          ["inline","link-to",["Systems","systems"],[],["loc",[null,[20,10],[20,41]]]]
+          ["inline","link-to",["Systems","systems"],[],["loc",[null,[15,6],[15,37]]]]
         ],
         locals: [],
         templates: []
@@ -4139,12 +4262,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 22,
-              "column": 8
+              "line": 17,
+              "column": 4
             },
             "end": {
-              "line": 24,
-              "column": 8
+              "line": 19,
+              "column": 4
             }
           },
           "moduleName": "harvestman/templates/application.hbs"
@@ -4154,7 +4277,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("          ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
@@ -4168,7 +4291,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           return morphs;
         },
         statements: [
-          ["inline","link-to",["News","news"],[],["loc",[null,[23,10],[23,35]]]]
+          ["inline","link-to",["News","news"],[],["loc",[null,[18,6],[18,31]]]]
         ],
         locals: [],
         templates: []
@@ -4181,12 +4304,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 25,
-              "column": 8
+              "line": 20,
+              "column": 4
             },
             "end": {
-              "line": 27,
-              "column": 8
+              "line": 22,
+              "column": 4
             }
           },
           "moduleName": "harvestman/templates/application.hbs"
@@ -4196,7 +4319,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("          ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
@@ -4210,7 +4333,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           return morphs;
         },
         statements: [
-          ["inline","link-to",["Media","media"],[],["loc",[null,[26,10],[26,37]]]]
+          ["inline","link-to",["Media","media"],[],["loc",[null,[21,6],[21,33]]]]
         ],
         locals: [],
         templates: []
@@ -4223,12 +4346,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 28,
-              "column": 8
+              "line": 23,
+              "column": 4
             },
             "end": {
-              "line": 30,
-              "column": 8
+              "line": 25,
+              "column": 4
             }
           },
           "moduleName": "harvestman/templates/application.hbs"
@@ -4238,7 +4361,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("          ");
+          var el1 = dom.createTextNode("      ");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
@@ -4252,7 +4375,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           return morphs;
         },
         statements: [
-          ["inline","link-to",["Firmware","firmware"],[],["loc",[null,[29,10],[29,43]]]]
+          ["inline","link-to",["Firmware","firmware"],[],["loc",[null,[24,6],[24,39]]]]
         ],
         locals: [],
         templates: []
@@ -4265,12 +4388,12 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 31,
-              "column": 8
+              "line": 26,
+              "column": 4
             },
             "end": {
-              "line": 35,
-              "column": 8
+              "line": 32,
+              "column": 4
             }
           },
           "moduleName": "harvestman/templates/application.hbs"
@@ -4280,11 +4403,17 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         hasRendered: false,
         buildFragment: function buildFragment(dom) {
           var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("          ");
+          var el1 = dom.createTextNode("    ");
           dom.appendChild(el0, el1);
-          var el1 = dom.createElement("a");
-          dom.setAttribute(el1,"href","#");
-          var el2 = dom.createTextNode("\n            Logout\n          ");
+          var el1 = dom.createElement("li");
+          var el2 = dom.createTextNode("\n      ");
+          dom.appendChild(el1, el2);
+          var el2 = dom.createElement("a");
+          dom.setAttribute(el2,"href","#");
+          var el3 = dom.createTextNode("\n        Logout\n      ");
+          dom.appendChild(el2, el3);
+          dom.appendChild(el1, el2);
+          var el2 = dom.createTextNode("\n    ");
           dom.appendChild(el1, el2);
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
@@ -4292,13 +4421,13 @@ define('harvestman/templates/application', ['exports'], function (exports) {
           return el0;
         },
         buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var element0 = dom.childAt(fragment, [1]);
+          var element0 = dom.childAt(fragment, [1, 1]);
           var morphs = new Array(1);
           morphs[0] = dom.createElementMorph(element0);
           return morphs;
         },
         statements: [
-          ["element","action",["invalidateSession"],[],["loc",[null,[32,22],[32,52]]]]
+          ["element","action",["invalidateSession"],[],["loc",[null,[28,18],[28,48]]]]
         ],
         locals: [],
         templates: []
@@ -4314,7 +4443,7 @@ define('harvestman/templates/application', ['exports'], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 45,
+            "line": 41,
             "column": 0
           }
         },
@@ -4325,21 +4454,40 @@ define('harvestman/templates/application', ['exports'], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1,"class","logo-header");
+        var el1 = dom.createElement("header");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
-        var el2 = dom.createElement("div");
-        dom.setAttribute(el2,"class","container");
+        var el2 = dom.createElement("ul");
+        dom.setAttribute(el2,"id","nav-mobile");
+        dom.setAttribute(el2,"class","side-nav fixed");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("a");
-        dom.setAttribute(el3,"href","#");
-        dom.setAttribute(el3,"class","main-logo brand-logo");
-        var el4 = dom.createTextNode("INDUSTRIAL MUSIC ELECTRONICS");
+        var el3 = dom.createElement("li");
+        dom.setAttribute(el3,"class","logo");
+        var el4 = dom.createTextNode("\n");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createComment("");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("    ");
         dom.appendChild(el3, el4);
         dom.appendChild(el2, el3);
-        var el3 = dom.createTextNode("\n  ");
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("  ");
         dom.appendChild(el2, el3);
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
@@ -4347,69 +4495,17 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createElement("nav");
+        var el1 = dom.createElement("main");
         var el2 = dom.createTextNode("\n  ");
         dom.appendChild(el1, el2);
         var el2 = dom.createElement("div");
-        dom.setAttribute(el2,"class","container");
+        dom.setAttribute(el2,"class","section");
         var el3 = dom.createTextNode("\n    ");
         dom.appendChild(el2, el3);
-        var el3 = dom.createElement("div");
-        dom.setAttribute(el3,"class","nav-wrapper");
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("ul");
-        dom.setAttribute(el4,"id","nav-mobile");
-        dom.setAttribute(el4,"class","hide-on-med-and-down");
-        var el5 = dom.createTextNode("\n        ");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createElement("li");
-        var el6 = dom.createComment("");
-        dom.appendChild(el5, el6);
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("\n      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n      ");
-        dom.appendChild(el3, el4);
-        var el4 = dom.createElement("ul");
-        dom.setAttribute(el4,"id","nav-mobile");
-        dom.setAttribute(el4,"class","right");
-        var el5 = dom.createTextNode("\n");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createComment("");
-        dom.appendChild(el4, el5);
-        var el5 = dom.createTextNode("      ");
-        dom.appendChild(el4, el5);
-        dom.appendChild(el3, el4);
-        var el4 = dom.createTextNode("\n    ");
-        dom.appendChild(el3, el4);
+        var el3 = dom.createComment("");
         dom.appendChild(el2, el3);
         var el3 = dom.createTextNode("\n  ");
         dom.appendChild(el2, el3);
-        dom.appendChild(el1, el2);
-        var el2 = dom.createTextNode("\n");
-        dom.appendChild(el1, el2);
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createElement("div");
-        dom.setAttribute(el1,"class","container main-container");
-        var el2 = dom.createTextNode("\n  ");
-        dom.appendChild(el1, el2);
-        var el2 = dom.createComment("");
         dom.appendChild(el1, el2);
         var el2 = dom.createTextNode("\n");
         dom.appendChild(el1, el2);
@@ -4423,32 +4519,31 @@ define('harvestman/templates/application', ['exports'], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var element1 = dom.childAt(fragment, [2, 1, 1]);
-        var element2 = dom.childAt(element1, [3]);
+        var element1 = dom.childAt(fragment, [0, 1]);
         var morphs = new Array(10);
-        morphs[0] = dom.createMorphAt(dom.childAt(element1, [1, 1]),0,0);
-        morphs[1] = dom.createMorphAt(element2,1,1);
-        morphs[2] = dom.createMorphAt(element2,2,2);
-        morphs[3] = dom.createMorphAt(element2,3,3);
-        morphs[4] = dom.createMorphAt(element2,4,4);
-        morphs[5] = dom.createMorphAt(element2,5,5);
-        morphs[6] = dom.createMorphAt(element2,6,6);
-        morphs[7] = dom.createMorphAt(element2,7,7);
-        morphs[8] = dom.createMorphAt(dom.childAt(fragment, [4]),1,1);
-        morphs[9] = dom.createMorphAt(fragment,6,6,contextualElement);
+        morphs[0] = dom.createMorphAt(dom.childAt(element1, [1]),1,1);
+        morphs[1] = dom.createMorphAt(element1,3,3);
+        morphs[2] = dom.createMorphAt(element1,4,4);
+        morphs[3] = dom.createMorphAt(element1,5,5);
+        morphs[4] = dom.createMorphAt(element1,6,6);
+        morphs[5] = dom.createMorphAt(element1,7,7);
+        morphs[6] = dom.createMorphAt(element1,8,8);
+        morphs[7] = dom.createMorphAt(element1,9,9);
+        morphs[8] = dom.createMorphAt(dom.childAt(fragment, [2, 1]),1,1);
+        morphs[9] = dom.createMorphAt(fragment,4,4,contextualElement);
         return morphs;
       },
       statements: [
-        ["block","link-to",["home"],[],0,null,["loc",[null,[10,12],[10,47]]]],
-        ["block","link-to",["about"],["tagName","li"],1,null,["loc",[null,[13,8],[15,20]]]],
-        ["block","link-to",["product"],["tagName","li"],2,null,["loc",[null,[16,8],[18,20]]]],
-        ["block","link-to",["systems"],["tagName","li"],3,null,["loc",[null,[19,8],[21,20]]]],
-        ["block","link-to",["news"],["tagName","li"],4,null,["loc",[null,[22,8],[24,20]]]],
-        ["block","link-to",["media"],["tagName","li"],5,null,["loc",[null,[25,8],[27,20]]]],
-        ["block","link-to",["firmware"],["tagName","li"],6,null,["loc",[null,[28,8],[30,20]]]],
-        ["block","if",[["get","session.isAuthenticated",["loc",[null,[31,14],[31,37]]]]],[],7,null,["loc",[null,[31,8],[35,15]]]],
-        ["content","outlet",["loc",[null,[42,2],[42,12]]]],
-        ["content","md-modal-container",["loc",[null,[44,0],[44,22]]]]
+        ["block","link-to",["home"],[],0,null,["loc",[null,[4,6],[6,18]]]],
+        ["block","link-to",["page.show","about"],["tagName","li"],1,null,["loc",[null,[8,4],[10,16]]]],
+        ["block","link-to",["product"],["tagName","li"],2,null,["loc",[null,[11,4],[13,16]]]],
+        ["block","link-to",["systems"],["tagName","li"],3,null,["loc",[null,[14,4],[16,16]]]],
+        ["block","link-to",["news"],["tagName","li"],4,null,["loc",[null,[17,4],[19,16]]]],
+        ["block","link-to",["media"],["tagName","li"],5,null,["loc",[null,[20,4],[22,16]]]],
+        ["block","link-to",["page.show","firmware"],["tagName","li"],6,null,["loc",[null,[23,4],[25,16]]]],
+        ["block","if",[["get","session.isAuthenticated",["loc",[null,[26,10],[26,33]]]]],[],7,null,["loc",[null,[26,4],[32,11]]]],
+        ["content","outlet",["loc",[null,[37,4],[37,14]]]],
+        ["content","md-modal-container",["loc",[null,[40,0],[40,22]]]]
       ],
       locals: [],
       templates: [child0, child1, child2, child3, child4, child5, child6, child7]
