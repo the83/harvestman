@@ -9,9 +9,9 @@ $color-medium-grey: color("grey", "darken-2");
 $color-light-grey: color("grey", "lighten-2");
 
 $secondary-color: $color-harvestman-orange;
-$tabs-underline-color: $color-light-grey;
-$tabs-text-color: $color-medium-grey;
-$tabs-bg-color: $color-dark-grey;
+$tabs-underline-color: $color-harvestman-orange;
+$tabs-text-color: $color-harvestman-orange;
+$tabs-bg-color: $color-medium-grey;
 $footer-bg-color: color("grey", "darken-4");
 
 @import 'components/variables';
@@ -174,7 +174,7 @@ textarea:focus {
   .slides {
     .active {
       padding: 20px 0px;
-      background-color: $color-medium-grey !important;
+      background-color: $color-dark-grey !important;
     }
   }
   img {
