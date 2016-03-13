@@ -11,7 +11,8 @@ export default EmberUploader.FileField.extend({
       }
     });
 
-    const uploadUrl = `api/v1/${this.get('objectType')}/${this.get('objectId')}/images` ;
+    const host = 'https://harvestman-staging.herokuapp.com';
+    const uploadUrl = `${host}/api/v1/${this.get('objectType')}/${this.get('objectId')}/images` ;
     const uploader = CustomUploader.create({
       url: uploadUrl,
       headers: {
