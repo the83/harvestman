@@ -20,11 +20,11 @@ test('it displays a list of images', function(assert) {
   assert.equal(renderedImages.length, 2);
   assert.equal(
     $(renderedImages[0]).attr('style'),
-    `background-image: url(http://localhost:4200/${images[0].url});`
+    `background-image: url(\"${images[0].url}\");`
   );
 
   assert.equal(
     $(renderedImages[1]).attr('style'),
-    `background-image: url(http://localhost:4200/${images[1].url});`
+    `background-image: url(\"${images[1].url}\");`
   );
 });
