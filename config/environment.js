@@ -31,6 +31,7 @@ module.exports = function(environment) {
       tokenAttributeName: 'token',
       identificationAttributeName: 'email'
     },
+    backendHost: 'http://localhost:3000'
   };
 
   if (environment === 'development') {
@@ -54,7 +55,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.backendHost = 'https://harvestman-staging.herokuapp.com'
   }
 
   return ENV;

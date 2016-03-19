@@ -1,5 +1,6 @@
 import EmberUploader from 'ember-uploader';
 import Ember from 'ember';
+import config from 'harvestman/config/environment';
 
 export default EmberUploader.FileField.extend({
   filesDidChange: function(files) {
@@ -11,7 +12,7 @@ export default EmberUploader.FileField.extend({
       }
     });
 
-    const host = 'https://harvestman-staging.herokuapp.com';
+    const host = config.backendHost;
     const uploadUrl = `${host}/api/v1/${this.get('objectType')}/${this.get('objectId')}/images` ;
     const uploader = CustomUploader.create({
       url: uploadUrl,

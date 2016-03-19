@@ -1,5 +1,6 @@
 import Devise from 'ember-simple-auth/authenticators/devise';
+import config from 'harvestman/config/environment';
 
 export default Devise.extend({
-  serverTokenEndpoint: 'http://localhost:3000/users/sign_in'
+  serverTokenEndpoint: `${config.backendHost}/users/sign_in`
 });
