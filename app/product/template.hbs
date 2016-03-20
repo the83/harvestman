@@ -1,15 +1,10 @@
 <div class="row">
   <div class="col">
     <h5>Products</h5>
+    {{#if model.isAuthenticated}}
+      {{#link-to 'product.new'}}New Product{{/link-to}}
+    {{/if}}
   </div>
 </div>
-
-{{#if model.isAuthenticated}}
-<div class="row">
-  <div class="col">
-    {{#link-to 'product.new'}}New Product{{/link-to}}
-  </div>
-</div>
-{{/if}}
 
 {{hm-product-tiles products=model.products}}

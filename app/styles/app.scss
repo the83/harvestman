@@ -11,9 +11,9 @@ $color-light-red: color("red", "lighten-1");
 $color-light-green: color("green", "lighten-2");
 
 $secondary-color: $color-harvestman-orange;
-$tabs-underline-color: $color-harvestman-orange;
-$tabs-text-color: $color-harvestman-orange;
 $tabs-bg-color: $color-medium-grey;
+$tabs-underline-color: black;
+$tabs-text-color: black;
 $footer-bg-color: color("grey", "darken-4");
 
 @import 'components/variables';
@@ -31,6 +31,10 @@ body {
   flex-direction: column;
   background-color: $color-light-grey;
   font-family: Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: color("grey", "darken-4");
 }
 
 main {
@@ -75,7 +79,7 @@ header {
 
     li {
       a {
-        padding: 0px 5px;
+        padding: 0px 1.5em;
       }
     }
   }
@@ -87,10 +91,13 @@ header {
   .side-nav {
     background-color: black;
     li {
+      a {
+        color: $color-light-grey !important;
+      }
       padding: 0;
       background-color: black;
       &:hover {
-        background-color: $color-light-grey;
+        background-color: $color-medium-grey;
       }
     }
     .logo {
@@ -109,7 +116,7 @@ header {
   }
 
   .active {
-    background-color: $color-light-grey;
+    background-color: $color-medium-grey;
     color: black;
     padding: 0;
   }
@@ -169,6 +176,13 @@ textarea:focus {
   color: color("orange", "darken-4");
 }
 
+.tabs {
+  margin: 0;
+  font-size: 1em;
+  background: none;
+  color: black;
+}
+
 #product-list {
   .active {
     background-color: color("grey", "darken-2");
@@ -185,7 +199,7 @@ textarea:focus {
 }
 
 #edit-product-btn {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .btn {
@@ -199,12 +213,7 @@ textarea:focus {
 }
 
 .edit-button {
-  padding-left: 0px;
-}
-
-.page-footer {
-  padding-bottom: 20px;
-  color: white;
+  padding-left: 0;
 }
 
 .slider {
@@ -243,10 +252,6 @@ textarea:focus {
   text-transform: uppercase;
 }
 
-#description {
-  background-color: $color-light-grey;
-}
-
 .clickable {
   cursor: pointer;
 }
@@ -264,20 +269,19 @@ textarea:focus {
     }
   }
   .card-content {
-    background-color: $color-medium-grey;
+    background-color: #FFF;
     font-size: 0.8em;
-    padding: 5px;
+    padding: 0.6em;
     p {
-      color: $color-light-grey;
+      color: $color-dark-grey;
     }
     .title {
       font-weight: bold;
       text-transform: uppercase;
-      color: $color-harvestman-orange;
+      color: black;
     }
   }
 }
-
 
 .show-newlines {
   p {

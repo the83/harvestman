@@ -1,19 +1,14 @@
 <div class="row">
   <div class="col s6 product-name">
     <h5>{{product.name}}</h5>
+    {{#if isAuthenticated}}
+      {{#link-to 'product.edit' product.id id="edit-product-btn" class="btn-flat"}}Edit{{/link-to}}
+    {{/if}}
   </div>
   <div class="col s6 right model-number">
     <h5>model {{product.modelNumber}}</h5>
   </div>
 </div>
-
-{{#if isAuthenticated}}
-  <div class="row">
-    <div class="col s12">
-      {{#link-to 'product.edit' product.id id="edit-product-btn" class="btn-flat"}}Edit{{/link-to}}
-    </div>
-  </div>
-{{/if}}
 
 <div class="row clickable">
   {{#md-tabs
@@ -21,7 +16,7 @@
     {{md-tab value='description' title="Description"}}
     {{md-tab value='features' title="Features"}}
     {{md-tab value='manual' title="Manual"}}
-    {{md-tab value='whereToBuy' title="Where to Buy"}}
+    {{md-tab value='whereToBuy' title="Buy"}}
   {{/md-tabs}}
 </div>
 
@@ -32,24 +27,24 @@
     {{/each}}
   </div>
 
-  <div class="col s8">
+  <div id="product-details" class="col s8 show-newlines product-details">
     {{#if showDescription}}
-      <div id="description" class="col s12 show-newlines">
+      <div id="description">
         <p>{{{product.description}}}</p>
       </div>
     {{/if}}
     {{#if showFeatures}}
-      <div id="specs" class="col s12 show-newlines">
+      <div id="specs">
         <p>{{{product.features}}}</p>
       </div>
     {{/if}}
     {{#if showManual}}
-      <div id="manual" class="col s12 show-newlines">
+      <div id="manual">
         <p>{{{product.manual}}}</p>
       </div>
     {{/if}}
     {{#if showWhereToBuy}}
-      <div id="manual" class="col s12">
+      <div id="manual">
         <p>$$$$$</p>
       </div>
     {{/if}}
