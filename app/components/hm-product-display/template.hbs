@@ -1,27 +1,29 @@
-<row>
+<div class="row">
   <div class="col s6 product-name">
     <h5>{{product.name}}</h5>
   </div>
   <div class="col s6 right model-number">
     <h5>model {{product.modelNumber}}</h5>
   </div>
-</row>
+</div>
 
-<row>
-  <div class="col s12">
-    {{#link-to 'product.edit' product.id id="edit-product-btn" class="btn-flat"}}Edit{{/link-to}}
+{{#if isAuthenticated}}
+  <div class="row">
+    <div class="col s12">
+      {{#link-to 'product.edit' product.id id="edit-product-btn" class="btn-flat"}}Edit{{/link-to}}
+    </div>
   </div>
-</row>
+{{/if}}
 
-<row>
+<div class="row">
   <div class="col s12 product-image">
     <div class="center-align">
       {{hm-slideshow images=product.images}}
     </div>
   </div>
-</row>
+</div>
 
-<row class="clickable">
+<div class="row clickable">
   {{#md-tabs
     selected=selectedTab}}
     {{md-tab value='description' title="Description"}}
@@ -29,8 +31,8 @@
     {{md-tab value='manual' title="Manual"}}
     {{md-tab value='whereToBuy' title="Where to Buy"}}
   {{/md-tabs}}
-</row>
-<row>
+</div>
+<div class="row">
   {{#if showDescription}}
     <div id="description" class="col s12 show-newlines">
       <p>{{{product.description}}}</p>
@@ -51,4 +53,4 @@
       <p>$$$$$</p>
     </div>
   {{/if}}
-</row>
+</div>

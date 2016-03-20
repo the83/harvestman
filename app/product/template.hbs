@@ -1,6 +1,15 @@
 <div class="row">
-  <div class="col s12">
-    {{outlet}}
-    {{hm-product-tiles products=model.products}}
+  <div class="col">
+    <h5>Products</h5>
   </div>
 </div>
+
+{{#if model.isAuthenticated}}
+<div class="row">
+  <div class="col">
+    {{#link-to 'product.new'}}New Product{{/link-to}}
+  </div>
+</div>
+{{/if}}
+
+{{hm-product-tiles products=model.products}}

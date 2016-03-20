@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  session: Ember.inject.service(),
   model: function(params) {
-    var page;
+    let page;
     if(params.page_id) {
       page = this.store.find('page', params.page_id);
      } else {
@@ -10,15 +11,16 @@ export default Ember.Route.extend({
     }
 
     return Ember.RSVP.hash({
-      page: page
+      page: page,
+      isAuthenticated: this.get('session.isAuthenticated')
     });
   },
   actions: {
     save: function() {
-      var model;
+      let model;
       model = this.currentModel;
       model.page.save().then((response) => {
-        var parent = this.container.lookup("route:page");
+        let parent = this.container.lookup("route:page");
         parent.refresh().then(() => {
           this.container.lookup('router:main').transitionTo('page.show', response.id);
         });

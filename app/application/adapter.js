@@ -11,5 +11,17 @@ export default DS.ActiveModelAdapter.extend(DataAdapterMixin, {
     return {
       "X-XSRF-TOKEN": decodeURIComponent(Ember.get(document.cookie.match(/XSRF\-TOKEN\=([^;]*)/), "1"))
     };
-  }.property().volatile()
+  }.property().volatile(),
+
+  ajax(url, type, hash) {
+    let promise = this._super(url, type, hash);
+    promise.then(() => {
+      if (type === 'POST' || type === 'PUT') {
+        Materialize.toast('Updated! :)', 4000, 'success-message');
+      }
+    }).catch(() => {
+      Materialize.toast(`Error :(`, 4000, 'error-message');
+    });
+    return promise;
+  }
 });

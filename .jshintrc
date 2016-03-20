@@ -31,6 +31,7 @@
   "unused": true,
   "globals": {
     "$": false,
-    "jQuery": false
+    "jQuery": false,
+    "Materialize": false
   }
 }

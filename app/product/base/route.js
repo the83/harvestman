@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  session: Ember.inject.service(),
   model: function(params) {
     var product;
     if(params.product_id) {
@@ -11,7 +12,8 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       store: this.store,
-      product: product
+      product: product,
+      isAuthenticated: this.get('session.isAuthenticated')
     });
   },
   actions: {

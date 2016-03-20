@@ -15,7 +15,7 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
       let password = this.modelFor('login').get('password');
 
       return this.get('session').authenticate('authenticator:devise', identification, password).catch((reason) => {
-        this.set('errorMessage', reason.error);
+        Materialize.toast(`UNAUTHORIZED`, 4000, 'error-message');
       });
     }
   }

@@ -4,11 +4,13 @@
   </div>
 </div>
 
+{{#if isAuthenticated}}
 <div class="row">
   <div class="col s12">
     {{#link-to 'page.edit' page.id}}Edit{{/link-to}}
   </div>
 </div>
+{{/if}}
 
 <div class="row">
   <div id="page-content" class="col s12">

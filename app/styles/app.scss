@@ -7,6 +7,8 @@ $primary-color: color("grey", "lighten-3");
 $color-dark-grey: color("grey", "darken-4");
 $color-medium-grey: color("grey", "darken-2");
 $color-light-grey: color("grey", "lighten-2");
+$color-light-red: color("red", "lighten-1");
+$color-light-green: color("green", "lighten-2");
 
 $secondary-color: $color-harvestman-orange;
 $tabs-underline-color: $color-harvestman-orange;
@@ -113,6 +115,13 @@ header {
   }
 }
 
+.error-message {
+  background-color: $color-light-red;
+}
+
+.success-message {
+  background-color: $color-light-green;
+}
 
 /* label color */
 label {
@@ -129,8 +138,13 @@ label {
 
 /* label underline focus color */
 .input-field input[type=text]:focus {
-  border-bottom: 1px solid $color-harvestman-orange;
-  box-shadow: 0 1px 0 0 $color-harvestman-orange;
+  border-bottom: 1px solid $color-harvestman-orange !important;
+  box-shadow: 0 1px 0 0 $color-harvestman-orange !important;
+}
+
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid $color-harvestman-orange !important;
+  box-shadow: 0 1px 0 0 $color-harvestman-orange !important;
 }
 
 textarea:focus {
@@ -175,8 +189,13 @@ textarea:focus {
 }
 
 .btn {
-  background-color: $color-dark-grey;
+  background-color: $color-dark-grey !important;
   color: $color-light-grey;
+
+  &:hover {
+    background-color: $color-harvestman-orange !important;
+    color: $color-dark-grey;
+  }
 }
 
 .edit-button {

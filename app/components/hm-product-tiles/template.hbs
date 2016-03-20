@@ -1,13 +1,7 @@
-<row>
-  <div class="col s12">
-    <h5>Products</h5>
-  </div>
-</row>
-
-<row>
+<div class="row">
   {{#each products as |product|}}
     <div class="col">
       {{hm-product-tile product=product}}
     </div>
   {{/each}}
-</row>
+</div>
